@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import { loginValidation } from '../utils/inputValidations';
 import apiLogin from '../services/Apiservices';
 
@@ -7,6 +8,9 @@ export default function Login() {
     email: '',
     password: '',
   });
+
+  const [hiddenOn, setHidenOn] = useState(true);
+  const [redirectOn, setRedirectOn] = useState(false);
 
   const validatePassword = ({ target: { name, value } }) => {
     setLogin({ ...login,
@@ -20,16 +24,29 @@ export default function Login() {
     return false;
   }
 
-  const sendLogin = async (login) => {
-    const result = await apiLogin(login);
-    console.log(result);
+  const sendLogin = async (data) => {
+    const notExist = 404;
+    const result = await apiLogin(data);
+    const { token, users } = result;
+    const UserData = {
+      name: users.name,
+      email: users.email,
+      role: users.role,
+      token,
+    };
+    if (result === notExist) {
+      setHidenOn(false);
+    } else {
+      localStorage.setItem('userData', JSON.stringify(UserData));
+      setRedirectOn(true);
+    }
   };
 
   return (
     <>
       <p
         data-testid="common_login__element-invalid-email"
-        display="hiden"
+        hidden={ hiddenOn }
       >
         invalid credential
       </p>
@@ -47,18 +64,21 @@ export default function Login() {
       />
       <button
         disabled={ handleLoginValidation() }
+        onClick={ () => sendLogin(login) }
         type="submit"
         data-testid="common_login__button-login"
       >
         login
       </button>
       <button
-        onClick={ () => sendLogin(login) }
         type="submit"
         data-testid="common_login__button-register"
       >
         register now
       </button>
+      {
+        redirectOn ? <Redirect to="/costumer/products" /> : null
+      }
     </>
   );
 }

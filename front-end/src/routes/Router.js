@@ -5,12 +5,16 @@ import {
   Redirect,
 } from 'react-router-dom';
 import Login from '../pages/Login';
+import Products from '../pages/customers/Products';
 
 export default function Router() {
   return (
     <Switch>
       <Route path="/login">
         <Login />
+      </Route>
+      <Route path="/costumer/products">
+        <Products />
       </Route>
       <Route path="/">
         <Redirect to="/login" />

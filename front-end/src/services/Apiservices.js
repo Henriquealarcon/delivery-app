@@ -1,16 +1,16 @@
-const apiLogin = async ({ email, password }) => {
-  fetch('https://localhost:3001/delivery-app-dev/login', {
-    method: 'POST',
-    body: JSON.stringify({
-      email,
-      password,
-    }),
-    headers: {
-      'Content-type': 'application/json; charset=UTF-8',
-    },
-  })
-    .then((response) => response.json())
-    .then((json) => console.log(json));
+import axios from 'axios';
+
+const notExist = 404;
+const apiLogin = async (login) => {
+  try {
+    const url = 'http://localhost:3001/login';
+
+    const fetchAPI = await axios.post(url, login);
+    const response = await fetchAPI.data.data;
+    return response;
+  } catch (error) {
+    return notExist;
+  }
 };
 
 export default apiLogin;
