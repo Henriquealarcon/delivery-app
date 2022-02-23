@@ -1,16 +1,16 @@
 module.exports = (sequelize, DataTypes) => {
-  const Users = sequelize.define('Users', {
+  const users = sequelize.define('users', {
     name: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
     role: DataTypes.STRING,
   }, 
-  { timestamps: false, tableName: 'Users', underscored: true });
+  { timestamps: false, tableName: 'users', underscored: true });
 
-  Users.associate = (models) => {
-    Users.hasMany(models.Sales,
+  users.associate = (models) => {
+    users.hasMany(models.Sales,
       { foreignKey: 'id', as: 'sales' });
   };
 
-  return Users;
+  return users;
 };
