@@ -10,6 +10,7 @@ const JWT_CONFIG = {
 
 const genToken = (data) => {
   const token = jwt.sign({ data }, JWT_SECRET, JWT_CONFIG);
+
   return token;
 };
 
