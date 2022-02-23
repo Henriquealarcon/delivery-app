@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
   { timestamps: false, tableName: 'users', underscored: true });
 
   users.associate = (models) => {
-    users.hasMany(models.Sales,
+    users.hasMany(models.sales,
       { foreignKey: 'id', as: 'sales' });
   };
 
