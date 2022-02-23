@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { loginValidation } from '../utils/inputValidations';
+import apiLogin from '../services/Apiservices';
 
 export default function Login() {
   const [login, setLogin] = useState({
@@ -18,6 +19,11 @@ export default function Login() {
     if (validationError) return true;
     return false;
   }
+
+  const sendLogin = async (login) => {
+    const result = await apiLogin(login);
+    console.log(result);
+  };
 
   return (
     <>
@@ -47,6 +53,7 @@ export default function Login() {
         login
       </button>
       <button
+        onClick={ () => sendLogin(login) }
         type="submit"
         data-testid="common_login__button-register"
       >
