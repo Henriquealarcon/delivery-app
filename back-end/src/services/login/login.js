@@ -20,8 +20,6 @@ module.exports = async (user) => {
     return USER_NOT_EXIST;
   }
 
-  console.log(findUserByEmail);
-
   const userWithHash = { ...findUserByEmail, password: passwordHash };
 
   const token = genToken(userWithHash);
