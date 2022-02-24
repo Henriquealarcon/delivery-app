@@ -13,7 +13,7 @@ export default function Router() {
       <Route path="/login">
         <Login />
       </Route>
-      <Route path="/costumer/products">
+      <Route path="/customer/products">
         <Products />
       </Route>
       <Route path="/">

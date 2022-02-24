@@ -77,7 +77,7 @@ export default function Login() {
         register now
       </button>
       {
-        redirectOn ? <Redirect to="/costumer/products" /> : null
+        redirectOn ? <Redirect to="/customer/products" /> : null
       }
     </>
   );
