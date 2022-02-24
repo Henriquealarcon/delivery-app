@@ -52,13 +52,13 @@ export default function Login() {
       </p>
       <input
         name="email"
-        onBlur={ validatePassword }
+        onChange={ validatePassword }
         type="text"
         data-testid="common_login__input-email"
       />
       <input
         name="password"
-        onBlur={ validatePassword }
+        onChange={ validatePassword }
         type="password"
         data-testid="common_login__input-password"
       />
