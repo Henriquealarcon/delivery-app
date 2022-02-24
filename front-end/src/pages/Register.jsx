@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { registerValidation } from '../utils/inputValidations';
-import registerApi from '../services/Apiservices';
+import registerApi from '../services/RegisterLoginServices';
 
 export default function RegisterUser() {
   const [register, setRegister] = useState({
