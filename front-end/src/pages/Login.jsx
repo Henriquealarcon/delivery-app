@@ -27,16 +27,16 @@ export default function Login() {
   const sendLogin = async (data) => {
     const notExist = 404;
     const result = await apiLogin(data);
-    const { token, users } = result;
-    const UserData = {
-      name: users.name,
-      email: users.email,
-      role: users.role,
-      token,
-    };
     if (result === notExist) {
       setHidenOn(false);
     } else {
+      const { token, users } = result;
+      const UserData = {
+        name: users.name,
+        email: users.email,
+        role: users.role,
+        token,
+      };
       localStorage.setItem('userData', JSON.stringify(UserData));
       setRedirectOn(true);
     }
