@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { loginValidation } from '../utils/inputValidations';
-import apiLogin from '../services/Apiservices';
+import apiLogin from '../services/ApiLoginServices';
 
 export default function Login() {
   const [login, setLogin] = useState({
@@ -9,6 +9,9 @@ export default function Login() {
     password: '',
   });
 
+  const [checkRole, setCheckRole] = useState(
+    'customer',
+  );
   const [hiddenOn, setHidenOn] = useState(true);
   const [redirectOn, setRedirectOn] = useState(false);
 
@@ -39,6 +42,19 @@ export default function Login() {
       };
       localStorage.setItem('userData', JSON.stringify(UserData));
       setRedirectOn(true);
+      setCheckRole({ role: users.role });
+      const uRole = users.role;
+      console.log(uRole, 'aqui');
+    }
+  };
+
+  const loginRedirection = () => {
+    if (checkRole === 'seller') {
+      return '/sellers/products';
+    } if (checkRole === 'admin') {
+      return '/admin/manage';
+    } if (checkRole === 'customer') {
+      return '/customer/products';
     }
   };
 
@@ -81,7 +97,7 @@ export default function Login() {
         </button>
       </Link>
       {
-        redirectOn ? <Redirect to="/customer/products" /> : null
+        redirectOn ? <Redirect to={ loginRedirection() } /> : null
       }
     </>
   );
