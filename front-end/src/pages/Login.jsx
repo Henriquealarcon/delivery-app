@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { loginValidation } from '../utils/inputValidations';
 import apiLogin from '../services/Apiservices';
 
@@ -55,12 +55,14 @@ export default function Login() {
         onChange={ validatePassword }
         type="text"
         data-testid="common_login__input-email"
+        placeholder="Insira seu e-mail"
       />
       <input
         name="password"
         onChange={ validatePassword }
         type="password"
         data-testid="common_login__input-password"
+        placeholder="Insira sua senha"
       />
       <button
         disabled={ handleLoginValidation() }
@@ -70,12 +72,14 @@ export default function Login() {
       >
         login
       </button>
-      <button
-        type="submit"
-        data-testid="common_login__button-register"
-      >
-        register now
-      </button>
+      <Link to="/register">
+        <button
+          type="submit"
+          data-testid="common_login__button-register"
+        >
+          register now
+        </button>
+      </Link>
       {
         redirectOn ? <Redirect to="/customer/products" /> : null
       }
