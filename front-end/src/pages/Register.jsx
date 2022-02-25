@@ -32,7 +32,7 @@ export default function RegisterUser() {
     if (result === notExist) {
       setHidenOn(false);
     } else {
-      const { token, users } = result.message;
+      const { token, users } = result;
       const UserData = {
         name: users.name,
         email: users.email,
