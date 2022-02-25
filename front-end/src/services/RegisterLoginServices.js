@@ -7,7 +7,7 @@ async function apiRegister(register) {
     const url = 'http://localhost:3001/register';
 
     const fetchAPI = await axios.post(url, register);
-    const response = await fetchAPI.data.data;
+    const response = await fetchAPI.data;
     return response;
   } catch (error) {
     return notExist;
