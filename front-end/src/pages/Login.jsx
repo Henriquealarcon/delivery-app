@@ -38,7 +38,7 @@ export default function Login() {
         role: users.role,
         token,
       };
-      localStorage.setItem('userData', JSON.stringify(UserData));
+      localStorage.setItem('user', JSON.stringify(UserData));
       setRedirectOn(true);
       // setCheckRole({ role: users.role });
       return UserData;

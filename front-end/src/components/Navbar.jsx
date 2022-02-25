@@ -11,7 +11,7 @@ import {
 export default function Navbar() {
   const [userName, setUserName] = useState();
   useEffect(() => {
-    const { name } = JSON.parse(localStorage.getItem('userData'));
+    const { name } = JSON.parse(localStorage.getItem('user'));
     setUserName(name);
   }, []);
 

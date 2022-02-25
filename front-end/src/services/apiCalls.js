@@ -3,7 +3,7 @@ import axios from 'axios';
 const getProducts = async () => {
   try {
     const url = 'http://localhost:3001/customer/products';
-    const { token } = JSON.parse(localStorage.getItem('userData'));
+    const { token } = JSON.parse(localStorage.getItem('user'));
     const fetchAPI = await axios.get(url, { headers: {
       // eslint-disable-next-line
       Authorization: token,

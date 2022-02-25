@@ -40,7 +40,7 @@ export default function RegisterUser() {
         role: users.role,
         token,
       };
-      localStorage.setItem('registeredUser', JSON.stringify(UserData));
+      localStorage.setItem('user', JSON.stringify(UserData));
       setRedirectOn(true);
     }
   };

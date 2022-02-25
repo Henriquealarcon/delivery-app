@@ -6,9 +6,7 @@ import PropTypes from 'prop-types';
 export default function ProductCard(product) {
   // const dispatch = useDispatch();
   const { product: { id, title, price, url_image: urlImage } } = product;
-
   const [count, setCount] = useState(0);
-
   const addProduct = () => {
     setCount(count + 1);
     // dispatch(addPrice('ola'));
