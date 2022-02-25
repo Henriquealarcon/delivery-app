@@ -14,13 +14,19 @@ export default function Navbar() {
         data-testid="customer_products__element-navbar-link-products"
         to="/customer/products"
       >
-        Produtos
+        <div>
+          <p>Produtos</p>
+          <p>11</p>
+        </div>
       </Link>
       <Link
         data-testid="customer_products__element-navbar-link-orders"
         to="/customer/orders"
       >
-        meu pedidos
+        <div>
+          <p>meu pedidos</p>
+          <p>12</p>
+        </div>
       </Link>
       <div>
         <h3
@@ -31,7 +37,7 @@ export default function Navbar() {
       </div>
       <Link
         data-testid="customer_products__element-navbar-link-logout"
-        to="/customer/logout"
+        to="/customer/checkout"
       >
         sair
       </Link>

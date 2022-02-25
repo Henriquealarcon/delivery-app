@@ -5,6 +5,7 @@ export default function Products() {
   return (
     <div>
       <NavBar />
+      aqui ficarão os produtos
     </div>
   );
 }
