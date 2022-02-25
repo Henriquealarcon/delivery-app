@@ -49,7 +49,7 @@ export default function Navbar() {
           data-testid="customer_products__element-navbar-link-logout"
           to="/customer/checkout"
         >
-          <h2>sair</h2>
+          <button type="button" onClick={ () => localStorage.clear() }>sair</button>
         </Link>
       </NavBarCheckout>
     </NavbarDiv>

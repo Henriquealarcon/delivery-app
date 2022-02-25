@@ -6,13 +6,15 @@ export default function ProductList() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    const response = getProducts();
-    setProducts(response);
+    const get = async () => {
+      const response = await getProducts();
+      setProducts(response.message);
+    };
+    get();
   }, []);
 
   return (
     <div>
-
       {
         products.map((product, index) => (
           <ProductCard

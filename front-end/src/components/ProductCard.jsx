@@ -1,16 +1,17 @@
 import React, { useState /* useEffect */ } from 'react';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import addPrice from '../redux/slice/productCart';
+// import addPrice from '../redux/slice/productCart';
 
 export default function ProductCard(product) {
-  const dispatch = useDispatch();
-  const { product: { id, title, price, image } } = product;
+  // const dispatch = useDispatch();
+  const { product: { id, title, price, url_image: urlImage } } = product;
+
   const [count, setCount] = useState(0);
 
   const addProduct = () => {
     setCount(count + 1);
-    dispatch(addPrice('ola'));
+    // dispatch(addPrice('ola'));
   };
 
   /* useEffect(() => {
@@ -31,7 +32,7 @@ export default function ProductCard(product) {
       </p>
       <img
         data-testid={ `customer_products__img-card-bg-image-${id}` }
-        src={ image }
+        src={ `${urlImage}` }
         alt="imagem da bebida"
       />
       <p

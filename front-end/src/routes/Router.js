@@ -26,7 +26,7 @@ export default function Router() {
       <Route path="/customer/products">
         <Products />
       </Route>
-      <Route path="/customer/checkout">
+      <Route path="/login">
         <Checkout />
       </Route>
       <Route path="/">
