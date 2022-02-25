@@ -8,6 +8,7 @@ export default function RegisterUser() {
     name: '',
     email: '',
     password: '',
+    role: 'customer',
   });
 
   const [hiddenOn, setHidenOn] = useState(true);
@@ -31,7 +32,7 @@ export default function RegisterUser() {
     if (result === notExist) {
       setHidenOn(false);
     } else {
-      const { token, users } = result;
+      const { token, users } = result.message;
       const UserData = {
         name: users.name,
         email: users.email,
@@ -46,7 +47,7 @@ export default function RegisterUser() {
   return (
     <>
       <p
-        data-testid="common_register__element-invalid-email"
+        data-testid="common_register__element-invalid_register"
         hidden={ hiddenOn }
       >
         invalid credential
@@ -76,7 +77,7 @@ export default function RegisterUser() {
         type="submit"
         data-testid="common_register__button-register"
         disabled={ switchDisabledButton() }
-        onClick={ () => sendRegister() }
+        onClick={ () => sendRegister(register) }
       >
         register now
       </button>
