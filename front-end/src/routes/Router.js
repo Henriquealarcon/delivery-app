@@ -7,6 +7,7 @@ import {
 import Login from '../pages/Login';
 import Products from '../pages/customers/Products';
 import Register from '../pages/Register';
+import Orders from '../pages/customers/Orders';
 
 export default function Router() {
   return (
@@ -17,12 +18,16 @@ export default function Router() {
       <Route path="/register">
         <Register />
       </Route>
+      <Route path="/customer/orders">
+        <Orders />
+      </Route>
       <Route path="/customer/products">
         <Products />
       </Route>
       <Route path="/">
         <Redirect to="/login" />
       </Route>
+
     </Switch>
   );
 }

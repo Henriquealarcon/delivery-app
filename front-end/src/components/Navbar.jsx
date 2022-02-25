@@ -12,19 +12,20 @@ export default function Navbar() {
       </Link>
       <Link
         data-testid="customer_products__element-navbar-link-orders"
-        to="/"
+        to="/customer/orders"
       >
         meu pedidos
       </Link>
-      <Link
-        data-testid="customer_products__element-navbar-user-full-name"
-        to="/"
-      >
-        perfil
-      </Link>
+      <div>
+        <h3
+          data-testid="customer_products__element-navbar-user-full-name"
+        >
+          perfil
+        </h3>
+      </div>
       <Link
         data-testid="customer_products__element-navbar-link-logout"
-        to="/"
+        to="/customer/logout"
       >
         sair
       </Link>
