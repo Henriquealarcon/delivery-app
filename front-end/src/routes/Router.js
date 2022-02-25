@@ -19,6 +19,7 @@ export default function Router() {
       <Route path="/register">
         <Register />
       </Route>
+      {/* essa rota precisa ser dinamica com Id do user */}
       <Route path="/customer/orders/">
         <Orders />
       </Route>

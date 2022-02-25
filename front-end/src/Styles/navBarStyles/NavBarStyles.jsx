@@ -21,16 +21,6 @@ export const NavBarProducs = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: stretch;
-  div {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-      h4 {
-      background-color: red;
-      border-radius: 50%;
-    }
-  }
 `;
 
 export const NavBarOrders = styled.div`
@@ -40,16 +30,6 @@ export const NavBarOrders = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: stretch;
-  div {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-      h4 {
-      background-color: red;
-      border-radius: 50%;
-    }
-  }
 `;
 
 export const NavBarProfile = styled.div`
@@ -68,14 +48,4 @@ export const NavBarCheckout = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: stretch;
-  div {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-      h4 {
-      background-color: red;
-      border-radius: 50%;
-    }
-  }
 `;

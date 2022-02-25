@@ -24,8 +24,6 @@ export default function Navbar() {
         >
           <div>
             <h3>produtos</h3>
-            {' '}
-            <h4>13</h4>
           </div>
         </Link>
       </NavBarProducs>
@@ -36,8 +34,6 @@ export default function Navbar() {
         >
           <div>
             <h3>meus pedidos</h3>
-            {' '}
-            <h4>13</h4>
           </div>
         </Link>
       </NavBarOrders>
