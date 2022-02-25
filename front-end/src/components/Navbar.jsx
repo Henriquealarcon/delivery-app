@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Navbar() {
+  const [userName, setUserName] = useState();
+  useEffect(() => {
+    const { name } = JSON.parse(localStorage.getItem('userData'));
+    setUserName(name);
+  }, []);
+
   return (
     <div>
       <Link
@@ -20,7 +26,7 @@ export default function Navbar() {
         <h3
           data-testid="customer_products__element-navbar-user-full-name"
         >
-          perfil
+          {userName}
         </h3>
       </div>
       <Link
