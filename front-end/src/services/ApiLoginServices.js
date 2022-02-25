@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const notExist = 404;
-const apiLogin = async (login) => {
+async function apiLogin(login) {
   try {
     const url = 'http://localhost:3001/login';
 
@@ -11,6 +11,6 @@ const apiLogin = async (login) => {
   } catch (error) {
     return notExist;
   }
-};
+}
 
 export default apiLogin;
