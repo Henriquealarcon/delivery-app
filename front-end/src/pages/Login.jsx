@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { loginValidation } from '../utils/inputValidations';
 import apiLogin from '../services/ApiLoginServices';
 
@@ -9,9 +9,9 @@ export default function Login() {
     password: '',
   });
 
-  // const [checkRole, setCheckRole] = useState('customer');
   const [hiddenOn, setHidenOn] = useState(true);
-  const [redirectOn, setRedirectOn] = useState(false);
+  // const [redirectOn, setRedirectOn] = useState(false);
+  const history = useHistory();
 
   const validatePassword = ({ target: { name, value } }) => {
     setLogin({ ...login,
@@ -24,6 +24,11 @@ export default function Login() {
     if (validationError) return true;
     return false;
   }
+  const setRedirectPath = (role) => {
+    if (role === 'administrator') return '/admin/manage';
+    if (role === 'seller') return '/seller/products';
+    return '/customer/products';
+  };
 
   const sendLogin = async (data) => {
     const notExist = 404;
@@ -39,17 +44,11 @@ export default function Login() {
         token,
       };
       localStorage.setItem('user', JSON.stringify(UserData));
-      setRedirectOn(true);
-      // setCheckRole({ role: users.role });
+      const path = setRedirectPath(users.role);
+      history.push(path);
       return UserData;
     }
   };
-
-  // const loginPath = {
-  //   customer: '/customer/products',
-  //   seller: '/seller/products',
-  //   administrator: '/admin/manage',
-  // };
 
   return (
     <>
@@ -89,10 +88,6 @@ export default function Login() {
           register now
         </button>
       </Link>
-      {
-        // redirectOn ? <Redirect to={ loginPath[checkRole] } /> : null
-        redirectOn ? <Redirect to="/customer/products" /> : null
-      }
     </>
   );
 }
