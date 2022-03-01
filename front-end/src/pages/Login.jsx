@@ -10,7 +10,7 @@ export default function Login() {
   });
 
   const [hiddenOn, setHidenOn] = useState(true);
-  // const [redirectOn, setRedirectOn] = useState(false);
+
   const history = useHistory();
 
   const validatePassword = ({ target: { name, value } }) => {
@@ -24,6 +24,7 @@ export default function Login() {
     if (validationError) return true;
     return false;
   }
+
   const setRedirectPath = (role) => {
     if (role === 'administrator') return '/admin/manage';
     if (role === 'seller') return '/seller/products';
