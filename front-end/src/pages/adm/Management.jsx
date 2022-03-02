@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../../components/Navbar';
 import { registerValidation } from '../../utils/inputValidations';
 import registerApi from '../../services/AdminRegisterServices';
@@ -17,6 +17,12 @@ export default function Management() {
     });
   };
   const [hiddenOn, setHiddenOn] = useState(true);
+  const [userToken, setUserToken] = useState('');
+
+  useEffect(() => {
+    const { token } = JSON.parse(localStorage.getItem('user'));
+    setUserToken(token);
+  }, []);
 
   function switchDisabledButton() {
     const validationError = registerValidation(register).error;
@@ -24,11 +30,18 @@ export default function Management() {
     return false;
   }
 
-  const sendRegister = async (data) => {
+  const sendRegister = async (data, token) => {
     const notExist = 404;
-    const result = await registerApi(data);
+    const result = await registerApi(data, token);
     if (result === notExist) {
       setHiddenOn(false);
+    } else {
+      setRegister({
+        name: '',
+        email: '',
+        password: '',
+        role: 'customer',
+      });
     }
   };
 
@@ -42,6 +55,7 @@ export default function Management() {
       </p>
       <input
         name="name"
+        value={ register.name }
         onChange={ validatePassword }
         type="text"
         data-testid="admin_manage__input-name"
@@ -49,6 +63,7 @@ export default function Management() {
       />
       <input
         name="email"
+        value={ register.email }
         onChange={ validatePassword }
         type="text"
         data-testid="admin_manage__input-email"
@@ -56,6 +71,7 @@ export default function Management() {
       />
       <input
         name="password"
+        value={ register.password }
         onChange={ validatePassword }
         type="password"
         data-testid="admin_manage__input-password"
@@ -63,6 +79,7 @@ export default function Management() {
       />
       <select
         name="role"
+        value={ register.role }
         onChange={ validatePassword }
         data-testid="admin_manage__select-role"
       >
@@ -72,7 +89,7 @@ export default function Management() {
       </select>
       <button
         disabled={ switchDisabledButton() }
-        onClick={ () => sendRegister(register) }
+        onClick={ () => sendRegister(register, userToken) }
         type="submit"
         data-testid="admin_manage__button-register"
       >
