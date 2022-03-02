@@ -9,7 +9,7 @@ export default function Login() {
     password: '',
   });
 
-  const [hiddenOn, setHidenOn] = useState(true);
+  const [hiddenOn, setHiddenOn] = useState(true);
 
   const history = useHistory();
 
@@ -35,7 +35,7 @@ export default function Login() {
     const notExist = 404;
     const result = await apiLogin(data);
     if (result === notExist) {
-      setHidenOn(false);
+      setHiddenOn(false);
     } else {
       const { token, users } = result;
       const UserData = {
