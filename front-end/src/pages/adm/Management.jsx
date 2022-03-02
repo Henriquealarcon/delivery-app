@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from '../../components/Navbar';
 import { registerValidation } from '../../utils/inputValidations';
+import registerApi from '../../services/AdminRegisterServices';
 
 export default function Management() {
   const [register, setRegister] = useState({
@@ -15,6 +16,7 @@ export default function Management() {
       [name]: value,
     });
   };
+  const [hiddenOn, setHiddenOn] = useState(true);
 
   function switchDisabledButton() {
     const validationError = registerValidation(register).error;
@@ -22,9 +24,22 @@ export default function Management() {
     return false;
   }
 
+  const sendRegister = async (data) => {
+    const notExist = 404;
+    const result = await registerApi(data);
+    if (result === notExist) {
+      setHiddenOn(false);
+    }
+  };
+
   return (
     <div>
       <Navbar />
+      <p
+        hidden={ hiddenOn }
+      >
+        Something went wrong
+      </p>
       <input
         name="name"
         onChange={ validatePassword }
@@ -57,7 +72,7 @@ export default function Management() {
       </select>
       <button
         disabled={ switchDisabledButton() }
-        // onClick={}
+        onClick={ () => sendRegister(register) }
         type="submit"
         data-testid="admin_manage__button-register"
       >

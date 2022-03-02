@@ -33,7 +33,6 @@ export default function RegisterUser() {
       setHiddenOn(false);
     } else {
       const { token, users } = result;
-      console.log(token, users);
       const UserData = {
         name: users.name,
         email: users.email,
