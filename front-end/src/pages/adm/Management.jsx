@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Navbar from '../../components/Navbar';
+import { registerValidation } from '../../utils/inputValidations';
 
 export default function Management() {
   const [register, setRegister] = useState({
@@ -14,6 +15,12 @@ export default function Management() {
       [name]: value,
     });
   };
+
+  function switchDisabledButton() {
+    const validationError = registerValidation(register).error;
+    if (validationError) return true;
+    return false;
+  }
 
   return (
     <div>
@@ -49,7 +56,7 @@ export default function Management() {
         <option value="administrator">Admin</option>
       </select>
       <button
-        // disabled={}
+        disabled={ switchDisabledButton() }
         // onClick={}
         type="submit"
         data-testid="admin_manage__button-register"
