@@ -1,25 +1,31 @@
-import React, { useState /* useEffect */ } from 'react';
-// import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-// import addPrice from '../redux/slice/productCart';
+import { changeSubtotalList, createSubtotalList } from '../redux/slice/productCart';
 
 export default function ProductCard(product) {
-  // const dispatch = useDispatch();
+  const subtotalCartList = useSelector(({ productCart }) => productCart.subtotalCartList);
+  const dispatch = useDispatch();
   const { product: { id, title, price, url_image: urlImage } } = product;
 
   const [count, setCount] = useState(0);
 
   const addProduct = () => {
     setCount(count + 1);
-    // dispatch(addPrice('ola'));
   };
 
-  /* useEffect(() => {
-    dispatch(addPrice(count * price));
-    // eslint-disable-next-line
-  }, [count]);
-*/
   const removeProduct = () => (count > 0 ? setCount(count - 1) : null);
+
+  useEffect(() => {
+    const multiplication = count * price;
+
+    if (subtotalCartList.length < Number('11')) {
+      dispatch(createSubtotalList({ subtotal: multiplication, id }));
+    } else {
+      dispatch(changeSubtotalList({ subtotal: multiplication, id }));
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [count]);
 
   return (
     <div>
@@ -48,6 +54,7 @@ export default function ProductCard(product) {
         -
       </button>
       <input
+        readOnly
         data-testid={ `customer_products__input-card-quantity-${id}` }
         value={ count }
       />
