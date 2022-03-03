@@ -6,7 +6,8 @@ import ProductList from '../../components/ProductList';
 export default function Products() {
   const [total, setTotal] = useState(0);
 
-  const subtotalCartList = useSelector(({ productCart }) => productCart.subtotalCartList);
+  const subtotalCartList = useSelector(({ productCartReducer }) => (
+    productCartReducer.subtotalCartList));
   useEffect(() => {
     if (subtotalCartList.length === Number('11')) {
       const newTotal = subtotalCartList.reduce((acc, a) => acc + a.subtotal, 0);

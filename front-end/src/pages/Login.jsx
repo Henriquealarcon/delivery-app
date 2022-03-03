@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { loginValidation } from '../utils/inputValidations';
 import apiLogin from '../services/ApiLoginServices';
 
@@ -9,9 +9,9 @@ export default function Login() {
     password: '',
   });
 
-  // const [checkRole, setCheckRole] = useState('customer');
-  const [hiddenOn, setHidenOn] = useState(true);
-  const [redirectOn, setRedirectOn] = useState(false);
+  const [hiddenOn, setHiddenOn] = useState(true);
+
+  const history = useHistory();
 
   const validatePassword = ({ target: { name, value } }) => {
     setLogin({ ...login,
@@ -25,11 +25,17 @@ export default function Login() {
     return false;
   }
 
+  const setRedirectPath = (role) => {
+    if (role === 'administrator') return '/admin/manage';
+    if (role === 'seller') return '/seller/products';
+    return '/customer/products';
+  };
+
   const sendLogin = async (data) => {
     const notExist = 404;
     const result = await apiLogin(data);
     if (result === notExist) {
-      setHidenOn(false);
+      setHiddenOn(false);
     } else {
       const { token, users } = result;
       const UserData = {
@@ -38,18 +44,12 @@ export default function Login() {
         role: users.role,
         token,
       };
-      localStorage.setItem('userData', JSON.stringify(UserData));
-      setRedirectOn(true);
-      // setCheckRole({ role: users.role });
+      localStorage.setItem('user', JSON.stringify(UserData));
+      const path = setRedirectPath(users.role);
+      history.push(path);
       return UserData;
     }
   };
-
-  // const loginPath = {
-  //   customer: '/customer/products',
-  //   seller: '/seller/products',
-  //   administrator: '/admin/manage',
-  // };
 
   return (
     <>
@@ -89,10 +89,6 @@ export default function Login() {
           register now
         </button>
       </Link>
-      {
-        // redirectOn ? <Redirect to={ loginPath[checkRole] } /> : null
-        redirectOn ? <Redirect to="/customer/products" /> : null
-      }
     </>
   );
 }

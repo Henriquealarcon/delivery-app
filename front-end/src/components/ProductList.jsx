@@ -20,6 +20,7 @@ export default function ProductList() {
           <ProductCard
             key={ index }
             product={ product }
+            data-testid={ product.id }
           />
         ))
       }

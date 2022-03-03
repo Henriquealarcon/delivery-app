@@ -9,6 +9,8 @@ import Products from '../pages/customers/Products';
 import Register from '../pages/Register';
 import Orders from '../pages/customers/Orders';
 import Checkout from '../pages/customers/Checkout';
+import Management from '../pages/adm/Management';
+import SellerOrders from '../pages/sellers/SellerOrders';
 
 export default function Router() {
   return (
@@ -28,6 +30,12 @@ export default function Router() {
       </Route>
       <Route path="/login">
         <Checkout />
+      </Route>
+      <Route path="/seller/products">
+        <SellerOrders />
+      </Route>
+      <Route path="/admin/manage">
+        <Management />
       </Route>
       <Route path="/">
         <Redirect to="/login" />

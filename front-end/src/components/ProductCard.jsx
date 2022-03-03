@@ -4,12 +4,11 @@ import PropTypes from 'prop-types';
 import { changeSubtotalList, createSubtotalList } from '../redux/slice/productCart';
 
 export default function ProductCard(product) {
-  const subtotalCartList = useSelector(({ productCart }) => productCart.subtotalCartList);
+  const subtotalCartList = useSelector(({ productCartReducer }) => (
+    productCartReducer.subtotalCartList));
   const dispatch = useDispatch();
   const { product: { id, title, price, url_image: urlImage } } = product;
-
   const [count, setCount] = useState(0);
-
   const addProduct = () => {
     setCount(count + 1);
   };
