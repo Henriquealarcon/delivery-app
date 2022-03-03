@@ -1,10 +1,10 @@
 import React from 'react';
-import Navbar from '../../components/Navbar';
+import NavBar from '../../components/Navbar';
 
 export default function Checkout() {
   return (
     <div>
-      <Navbar />
+      <NavBar />
       aqui ficará Checkout
     </div>
   );

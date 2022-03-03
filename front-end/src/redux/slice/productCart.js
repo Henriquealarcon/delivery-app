@@ -3,16 +3,20 @@ import { createSlice } from '@reduxjs/toolkit';
 export const productCart = createSlice({
   name: 'productCart',
   initialState: {
-    productValue: [],
+    subtotalCartList: [],
   },
   reducers: {
-    addPrice: (state, action) => {
-      state.productValue = action.payload;
-      // state.productValue = [...state.productValue, action.payload];
+    createSubtotalList: (state, action) => {
+      state.subtotalCartList = [...state.subtotalCartList, action.payload];
+    },
+    changeSubtotalList: (state, action) => {
+      const prevTaskIndex = state.subtotalCartList
+        .findIndex((subtotal) => subtotal.id === action.payload.id);
+      state.subtotalCartList.splice(prevTaskIndex, 1, action.payload);
     },
   },
 });
 
-export const { addPrice } = productCart.actions;
+export const { createSubtotalList, changeSubtotalList } = productCart.actions;
 
 export default productCart.reducer;
