@@ -5,39 +5,42 @@ import PropTypes from 'prop-types';
 
 export default function ProductCard(product) {
   // const dispatch = useDispatch();
-  const { product: { id, title, price, url_image: urlImage } } = product;
+  const { product: { id, name, price, url_image: urlImage } } = product;
   const [count, setCount] = useState(0);
   const addProduct = () => {
     setCount(count + 1);
-    // dispatch(addPrice('ola'));
   };
 
+  const handleInputQuantity = ({ value }) => {
+    setCount(Number(value));
+    console.log(count);
+  };
   /* useEffect(() => {
     dispatch(addPrice(count * price));
     // eslint-disable-next-line
   }, [count]);
 */
   const removeProduct = () => (count > 0 ? setCount(count - 1) : null);
-
+  const FormatPrice = price.replace('.', ',');
   return (
     <div>
       <p
         data-testid={ `customer_products__element-card-price-${id}` }
       >
-        preço :
-        {' '}
-        {price}
+        {FormatPrice}
       </p>
       <img
         data-testid={ `customer_products__img-card-bg-image-${id}` }
         src={ `${urlImage}` }
         alt="imagem da bebida"
       />
-      <p
-        data-testid={ `customer_products__element-card-title-${id}` }
-      >
-        {title}
-      </p>
+      <div>
+        <p
+          data-testid={ `customer_products__element-card-title-${id}` }
+        >
+          {name}
+        </p>
+      </div>
       <button
         onClick={ removeProduct }
         data-testid={ `customer_products__button-card-rm-item-${id}` }
@@ -46,7 +49,9 @@ export default function ProductCard(product) {
         -
       </button>
       <input
+        type="number"
         data-testid={ `customer_products__input-card-quantity-${id}` }
+        onChange={ (e) => handleInputQuantity(e.target) }
         value={ count }
       />
       <button
