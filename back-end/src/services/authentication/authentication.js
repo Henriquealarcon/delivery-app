@@ -2,8 +2,8 @@ require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const path = require('path');
 const fs = require('fs');
-const archive = path.join(__dirname, '..', '..', '..', 'jwt.evaluation.key');
 
+const archive = path.join(__dirname, '..', '..', '..', 'jwt.evaluation.key');
 
 const JWT_SECRET = fs.readFileSync(archive, {
   encoding: 'utf8',
