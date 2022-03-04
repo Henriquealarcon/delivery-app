@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { changeSubtotalList, createSubtotalList } from '../redux/slice/productCart';
+import {
+  DivCard,
+  DivCardFooter,
+  DivCardButons,
+  Price } from '../Styles/cardsStyle/CardStyle';
 
 export default function ProductCard(product) {
   const subtotalCartList = useSelector(({ productCartReducer }) => (
@@ -32,45 +37,53 @@ export default function ProductCard(product) {
   };
 
   return (
-    <div>
-      <p
-        data-testid={ `customer_products__element-card-price-${id}` }
-      >
-        { price.replace('.', ',')}
-      </p>
+    <DivCard>
+
+      <Price>
+        <p>R$</p>
+        <p
+          data-testid={ `customer_products__element-card-price-${id}` }
+        >
+          { price.replace('.', ',')}
+        </p>
+      </Price>
       <img
         data-testid={ `customer_products__img-card-bg-image-${id}` }
         src={ `${urlImage}` }
         alt="imagem da bebida"
       />
-      <div>
-        <p
-          data-testid={ `customer_products__element-card-title-${id}` }
-        >
-          {name}
-        </p>
-      </div>
-      <button
-        onClick={ removeProduct }
-        data-testid={ `customer_products__button-card-rm-item-${id}` }
-        type="button"
-      >
-        -
-      </button>
-      <input
-        type="number"
-        data-testid={ `customer_products__input-card-quantity-${id}` }
-        onChange={ (e) => handleInputQuantity(e.target) }
-        value={ count }
-      />
-      <button
-        onClick={ addProduct }
-        data-testid={ `customer_products__button-card-add-item-${id}` }
-        type="button"
-      >
-        +
-      </button>
-    </div>
+      <DivCardFooter>
+        <div>
+          <p
+            data-testid={ `customer_products__element-card-title-${id}` }
+          >
+            {name}
+          </p>
+        </div>
+        <DivCardButons>
+          <button
+            onClick={ removeProduct }
+            data-testid={ `customer_products__button-card-rm-item-${id}` }
+            type="button"
+          >
+            -
+          </button>
+          <input
+            type="number"
+            data-testid={ `customer_products__input-card-quantity-${id}` }
+            onChange={ (e) => handleInputQuantity(e.target) }
+            value={ count }
+          />
+          <button
+            onClick={ addProduct }
+            data-testid={ `customer_products__button-card-add-item-${id}` }
+            type="button"
+          >
+            +
+          </button>
+        </DivCardButons>
+      </DivCardFooter>
+    </DivCard>
   );
 }
 
