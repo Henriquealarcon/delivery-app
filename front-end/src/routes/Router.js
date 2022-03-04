@@ -16,19 +16,19 @@ export default function Router() {
   return (
     <Switch>
       <Route exact path="/">
-        <Redirect to="/login" component={ Login }/>
+        <Redirect to="/login" component={ Login } />
       </Route>
 
-      <Route exact path="/login"  component={ Login } />
+      <Route exact path="/login" component={ Login } />
 
-      <Route exact path="/register"  component={ Register } />
+      <Route exact path="/register" component={ Register } />
 
       {/* essa rota precisa ser dinamica com Id do user */}
-      <Route exact path="/customer/orders/"  component={ Orders } />
+      <Route exact path="/customer/orders/" component={ Orders } />
 
-      <Route exact path="/customer/products"  component={ Products } />
+      <Route exact path="/customer/products" component={ Products } />
 
-      <Route exact path="/seller/products"  component={ SellerOrders }/>
+      <Route exact path="/seller/products" component={ SellerOrders } />
 
       <Route exact path="/admin/manage" component={ Management } />
 

@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -7,12 +6,6 @@ import ProductList from '../../components/ProductList';
 
 export default function Products() {
   const [total, setTotal] = useState(0);
-  const [ disable, setDisable] = useState(false);
-
-    /*useEffect(() => {
-      let x = Number(total) > 0 ? true: false
-      setDisable(x)
-    },[total])*/
 
   const subtotalCartList = useSelector(({ productCartReducer }) => (
     productCartReducer.subtotalCartList));
@@ -27,14 +20,16 @@ export default function Products() {
     <div>
       <NavBar />
       <ProductList />
-      <Link 
+      <Link
         data-testid="customer_products__checkout-bottom-value"
-      to='/customer/checkout'>
+        to="/customer/checkout"
+      >
         <button
-          data-testid='customer_products__button-cart'
-          disabled={ total === '0,00' ? true : false } 
+          type="button"
+          data-testid="customer_products__button-cart"
+          disabled={ total === '0,00' }
         >
-            { total }
+          { total }
         </button>
       </Link>
     </div>
