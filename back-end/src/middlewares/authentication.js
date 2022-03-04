@@ -9,7 +9,6 @@ module.exports = (req, res, next) => {
   }
   
   const user = verifyToken(authorization);
-  console.log(authorization, 'user');
 
   if (!user) {
     return res.status(StatusCodes.UNAUTHORIZED).json({ message: 'Expired or invalid token' });

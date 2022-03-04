@@ -11,7 +11,7 @@ export default function RegisterUser() {
     role: 'customer',
   });
 
-  const [hiddenOn, setHidenOn] = useState(true);
+  const [hiddenOn, setHiddenOn] = useState(true);
   const [redirectOn, setRedirectOn] = useState(false);
 
   const validatePassword = ({ target: { name, value } }) => {
@@ -30,7 +30,7 @@ export default function RegisterUser() {
     const notExist = 404;
     const result = await registerApi(data);
     if (result === notExist) {
-      setHidenOn(false);
+      setHiddenOn(false);
     } else {
       const { token, users } = result;
       const UserData = {
@@ -39,7 +39,7 @@ export default function RegisterUser() {
         role: users.role,
         token,
       };
-      localStorage.setItem('registeredUser', JSON.stringify(UserData));
+      localStorage.setItem('user', JSON.stringify(UserData));
       setRedirectOn(true);
     }
   };

@@ -1,7 +1,7 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 
-const { JWT_SECRET } = process.env;
+const JWT_SECRET = 'grupo21senhasecreta';
 
 const JWT_CONFIG = {
   expiresIn: '15m',
