@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { changeSubtotalList, createSubtotalList } from '../redux/slice/productCart';
+import {
+  changeSubtotalList,
+  createSubtotalList,
+  updateTotalPrice } from '../redux/slice/productCart';
 import {
   DivCard,
   DivCardFooter,
@@ -32,6 +35,7 @@ export default function ProductCard(product) {
       dispatch(changeSubtotalList({
         subtotal: multiplication, id, name, price, quantity: count,
       }));
+      dispatch(updateTotalPrice());
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [count]);

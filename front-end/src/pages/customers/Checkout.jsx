@@ -6,7 +6,9 @@ import TableBody from '../../components/TableBody';
 export default function Checkout() {
   const products = useSelector(({ productCartReducer }) => (
     productCartReducer.subtotalCartList));
-  const totalPrice = JSON.parse(localStorage.getItem('total'));
+  const totalPrice = useSelector(({ productCartReducer }) => (
+    productCartReducer.totalPrice));
+
   return (
     <div>
       <NavBar />
@@ -34,7 +36,11 @@ export default function Checkout() {
           }
         </tbody>
       </table>
-      <div data-testid="customer_checkout__element-order-total-price">{totalPrice}</div>
+      <div
+        data-testid="customer_checkout__element-order-total-price"
+      >
+        {totalPrice.toFixed(2).toString().replace('.', ',')}
+      </div>
       <div>
         <select
           data-testid="customer_checkout__select-seller"

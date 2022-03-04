@@ -1,12 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { changeSubtotalList, updateTotalPrice } from '../redux/slice/productCart';
 
 export default function TableBody({ product: {
+  id,
   name,
   quantity,
   price,
   subtotal,
 }, index }) {
+  const dispatch = useDispatch();
+  const removeProduct = () => {
+    dispatch(changeSubtotalList({
+      subtotal: 0, id, name, price, quantity: 0,
+    }));
+    dispatch(updateTotalPrice());
+  };
+
   return (
     <tr>
       <td
@@ -37,6 +48,7 @@ export default function TableBody({ product: {
       <button
         data-testid={ `customer_checkout__element-order-table-remove-${index}` }
         type="button"
+        onClick={ () => removeProduct() }
       >
         Remover
       </button>
