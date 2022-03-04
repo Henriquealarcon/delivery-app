@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
+
 import {
   NavbarDiv,
   NavBarProducs,
@@ -9,14 +10,21 @@ import {
 } from '../Styles/navBarStyles/NavBarStyles';
 
 export default function Navbar() {
+  const [redirectOn, setRedirectOn] = useState(false);
   const [userName, setUserName] = useState();
   useEffect(() => {
     const { name } = JSON.parse(localStorage.getItem('user'));
     setUserName(name);
   }, []);
 
+  const clearAndRedirect = () => {
+    localStorage.clear();
+    setRedirectOn(true);
+  };
+
   return (
     <NavbarDiv>
+      { redirectOn ? <Redirect to="/login" /> : null }
       <NavBarProducs>
         <Link
           data-testid="customer_products__element-navbar-link-products"
@@ -45,12 +53,13 @@ export default function Navbar() {
         </h3>
       </NavBarProfile>
       <NavBarCheckout>
-        <Link
+        <button
           data-testid="customer_products__element-navbar-link-logout"
-          to="/login"
+          type="button"
+          onClick={ () => clearAndRedirect() }
         >
-          <button type="button" onClick={ () => localStorage.clear() }>sair</button>
-        </Link>
+          sair
+        </button>
       </NavBarCheckout>
     </NavbarDiv>
   );
