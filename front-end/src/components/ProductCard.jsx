@@ -7,8 +7,8 @@ export default function ProductCard(product) {
   const subtotalCartList = useSelector(({ productCartReducer }) => (
     productCartReducer.subtotalCartList));
   const dispatch = useDispatch();
-  const { product: { id, title, price, url_image: urlImage } } = product;
-  const [count, setCount] = useState(0);
+  const { product: { id, name, price, url_image: urlImage } } = product;
+  const [count, setCount] = useState(null);
   const addProduct = () => {
     setCount(count + 1);
   };
@@ -26,25 +26,30 @@ export default function ProductCard(product) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [count]);
 
+  const handleInputQuantity = ({ value }) => {
+    setCount(Number(value));
+    console.log(count);
+  };
+
   return (
     <div>
       <p
         data-testid={ `customer_products__element-card-price-${id}` }
       >
-        preço :
-        {' '}
-        {price}
+        { price.replace('.', ',')}
       </p>
       <img
         data-testid={ `customer_products__img-card-bg-image-${id}` }
         src={ `${urlImage}` }
         alt="imagem da bebida"
       />
-      <p
-        data-testid={ `customer_products__element-card-title-${id}` }
-      >
-        {title}
-      </p>
+      <div>
+        <p
+          data-testid={ `customer_products__element-card-title-${id}` }
+        >
+          {name}
+        </p>
+      </div>
       <button
         onClick={ removeProduct }
         data-testid={ `customer_products__button-card-rm-item-${id}` }
@@ -53,8 +58,9 @@ export default function ProductCard(product) {
         -
       </button>
       <input
-        readOnly
+        type="number"
         data-testid={ `customer_products__input-card-quantity-${id}` }
+        onChange={ (e) => handleInputQuantity(e.target) }
         value={ count }
       />
       <button
