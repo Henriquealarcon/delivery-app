@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 import { changeSubtotalList, createSubtotalList } from '../redux/slice/productCart';
 
 export default function ProductCard(product) {
-  const subtotalCartList = useSelector(({ productCartReducer }) => (
-    productCartReducer.subtotalCartList));
+  const [count, setCount] = useState(0);
   const dispatch = useDispatch();
   const { product: { id, name, price, url_image: urlImage } } = product;
-  const [count, setCount] = useState(null);
+  const subtotalCartList = useSelector(({ productCartReducer }) => (
+    productCartReducer.subtotalCartList));
+
   const addProduct = () => {
     setCount(count + 1);
   };
@@ -28,7 +29,6 @@ export default function ProductCard(product) {
 
   const handleInputQuantity = ({ value }) => {
     setCount(Number(value));
-    console.log(count);
   };
 
   return (
@@ -58,7 +58,8 @@ export default function ProductCard(product) {
         -
       </button>
       <input
-        type="number"
+        type="text"
+        pattern="[0-9]*"
         data-testid={ `customer_products__input-card-quantity-${id}` }
         onChange={ (e) => handleInputQuantity(e.target) }
         value={ count }
