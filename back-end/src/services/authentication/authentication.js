@@ -1,14 +1,14 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const path = require('path');
-
-const archive = path.join(__dirname, '..', '..', '..', 'back-end', 'jwt.evaluation.key');
+const fs = require('fs');
+const archive = path.join(__dirname, '..', '..', '..', 'jwt.evaluation.key');
 
 
 const JWT_SECRET = fs.readFileSync(archive, {
   encoding: 'utf8',
   flags: 'string',
-}).trim() || 'secret_key';
+}).trim() || 'grupo21senhasecreta';
 
 const JWT_CONFIG = {
   expiresIn: '15m',
