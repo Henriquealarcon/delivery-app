@@ -8,7 +8,7 @@ const archive = path.join(__dirname, '..', '..', '..', 'jwt.evaluation.key');
 const JWT_SECRET = fs.readFileSync(archive, {
   encoding: 'utf8',
   flags: 'string',
-}).trim() || 'secret_key';
+}).trim() || 'grupo21senhasecreta';
 
 const JWT_CONFIG = {
   expiresIn: '15m',
