@@ -5,7 +5,7 @@ export default function Checkout() {
   return (
     <div>
       <NavBar />
-      aqui ficará Checkout
+      commit inicial
     </div>
   );
 }
