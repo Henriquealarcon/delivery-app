@@ -25,9 +25,13 @@ export default function ProductCard(product) {
     const multiplication = count * price;
 
     if (subtotalCartList.length < Number('11')) {
-      dispatch(createSubtotalList({ subtotal: multiplication, id }));
+      dispatch(createSubtotalList({
+        subtotal: multiplication, id, name, price, quantity: count,
+      }));
     } else {
-      dispatch(changeSubtotalList({ subtotal: multiplication, id }));
+      dispatch(changeSubtotalList({
+        subtotal: multiplication, id, name, price, quantity: count,
+      }));
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [count]);
@@ -52,13 +56,13 @@ export default function ProductCard(product) {
         alt="imagem da bebida"
       />
       <DivCardFooter>
-        <div>
+        <p>
           <p
             data-testid={ `customer_products__element-card-title-${id}` }
           >
             {name}
           </p>
-        </div>
+        </p>
         <DivCardButons>
           <button
             onClick={ removeProduct }

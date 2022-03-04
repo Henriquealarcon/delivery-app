@@ -37,6 +37,7 @@ export default function Products() {
               type="button"
               data-testid="customer_products__button-cart"
               disabled={ total === '0,00' }
+              onClick={ () => localStorage.setItem('total', JSON.stringify(total)) }
             >
               { total }
             </TotalButton>
