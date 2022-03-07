@@ -30,9 +30,9 @@ export default function Navbar() {
           data-testid="customer_products__element-navbar-link-products"
           to="/customer/products"
         >
-          <div>
+          <p>
             <h3>produtos</h3>
-          </div>
+          </p>
         </Link>
       </NavBarProducs>
       <NavBarOrders>
@@ -40,9 +40,9 @@ export default function Navbar() {
           data-testid="customer_products__element-navbar-link-orders"
           to="/customer/orders"
         >
-          <div>
+          <p>
             <h3>meus pedidos</h3>
-          </div>
+          </p>
         </Link>
       </NavBarOrders>
       <NavBarProfile>
