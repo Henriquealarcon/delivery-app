@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const DivCard = styled.div`
+export const DivCard = styled.p`
   border: 1px solid black;
   margin: 5px;
   box-shadow: 5px 5px 5px #939393;
@@ -16,12 +16,12 @@ export const DivCard = styled.div`
     }
 `;
 
-export const Price = styled.div`
+export const Price = styled.p`
   display:flex;
   flex-direction: row;
 `;
 
-export const DivCardFooter = styled.div`
+export const DivCardFooter = styled.p`
   background-color: #eaf1ef;
   width: 100%;
   height: 100%;
@@ -30,7 +30,7 @@ export const DivCardFooter = styled.div`
   align-items: center;
   `;
 
-export const DivCardButons = styled.div`
+export const DivCardButons = styled.p`
   input {
     width: 50px;
     height: 25px;
