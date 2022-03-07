@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import NavBar from '../../components/Navbar';
@@ -10,16 +10,8 @@ import {
 } from '../../Styles/productSytyle/ProductStyle';
 
 export default function Products() {
-  const [total, setTotal] = useState(0);
-
-  const subtotalCartList = useSelector(({ productCartReducer }) => (
-    productCartReducer.subtotalCartList));
-  useEffect(() => {
-    if (subtotalCartList.length === Number('11')) {
-      const newTotal = subtotalCartList.reduce((acc, a) => acc + a.subtotal, 0);
-      setTotal((newTotal.toFixed(2).toString().replace('.', ',')));
-    }
-  }, [subtotalCartList, total]);
+  const totalPrice = useSelector(({ productCartReducer }) => (
+    productCartReducer.totalPrice)).toFixed(2).toString().replace('.', ',');
 
   return (
     <>
@@ -36,9 +28,10 @@ export default function Products() {
             <TotalButton
               type="button"
               data-testid="customer_products__button-cart"
-              disabled={ total === '0,00' }
+              disabled={ totalPrice === '0,00' }
+              onClick={ () => localStorage.setItem('total', JSON.stringify(totalPrice)) }
             >
-              { total }
+              { totalPrice }
             </TotalButton>
           </Link>
         </StyleDivTotalPrice>
