@@ -18,7 +18,7 @@ export const TotalDiv = styled.div`
   display: flex;
   justify-content: space-between;
   font-size: 45px;
-  padding: 8px;
+  padding: 8px; 
   width: 20%;
   height: 60px;
   margin:10px;
