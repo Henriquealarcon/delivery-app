@@ -2,6 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { changeSubtotalList, updateTotalPrice } from '../redux/slice/productCart';
+import {
+  TdIten,
+  TdDescription,
+  TdQuantity,
+  TdUnitPrice,
+  TdTotalPrice,
+  TdRemoveItem,
+} from '../Styles/tablestyles/tableSltyles';
 
 export default function TableBody({ product: {
   id,
@@ -20,38 +28,40 @@ export default function TableBody({ product: {
 
   return (
     <tr>
-      <td
+      <TdIten
         data-testid={ `customer_checkout__element-order-table-item-number-${index}` }
       >
         {index + 1}
-      </td>
-      <td
+      </TdIten>
+      <TdDescription
         data-testid={ `customer_checkout__element-order-table-name-${index}` }
       >
         {name}
-      </td>
-      <td
+      </TdDescription>
+      <TdQuantity
         data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
       >
         {quantity}
-      </td>
-      <td
+      </TdQuantity>
+      <TdUnitPrice
         data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }
       >
         {price.replace('.', ',')}
-      </td>
-      <td
+      </TdUnitPrice>
+      <TdTotalPrice
         data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }
       >
         {subtotal.toFixed(2).replace('.', ',')}
-      </td>
-      <button
-        data-testid={ `customer_checkout__element-order-table-remove-${index}` }
-        type="button"
-        onClick={ () => removeProduct() }
-      >
-        Remover
-      </button>
+      </TdTotalPrice>
+      <TdRemoveItem>
+        <button
+          data-testid={ `customer_checkout__element-order-table-remove-${index}` }
+          type="button"
+          onClick={ () => removeProduct() }
+        >
+          Remover
+        </button>
+      </TdRemoveItem>
     </tr>
   );
 }

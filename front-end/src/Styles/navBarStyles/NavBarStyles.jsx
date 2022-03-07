@@ -2,6 +2,9 @@ import styled from 'styled-components';
 
 export const NavbarDiv = styled.p`
   color: white;
+  top: 0;
+  width: 100%;
+  height: 100%;
   a {
   color: white;
   text-decoration: none;
@@ -11,7 +14,6 @@ export const NavbarDiv = styled.p`
   flex-direction: row;
   justify-content: space-around;
   align-items: stretch;
-
 `;
 
 export const NavBarProducs = styled.p`
