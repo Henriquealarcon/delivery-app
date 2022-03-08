@@ -39,6 +39,7 @@ export default function Login() {
     } else {
       const { token, users } = result;
       const UserData = {
+        id: users.id,
         name: users.name,
         email: users.email,
         role: users.role,
