@@ -7,7 +7,6 @@ async function apiLogin(login) {
 
     const fetchAPI = await axios.post(url, login);
     const response = await fetchAPI.data;
-    console.log(response, 'response login');
     return response;
   } catch (error) {
     return notExist;

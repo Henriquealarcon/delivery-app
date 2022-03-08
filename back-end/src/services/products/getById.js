@@ -8,7 +8,5 @@ module.exports = async (id) => {
         return USER_NOT_EXIST;
     }
 
-    return {
-        status: StatusCodes.OK, message: products,
-    };
+    return { status: StatusCodes.OK, message: products };
 };

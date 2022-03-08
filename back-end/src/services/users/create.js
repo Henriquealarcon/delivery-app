@@ -3,7 +3,7 @@ const md5 = require('md5');
 const Models = require('../../database/models');
 const { INVALID_ENTRIES, ALREADY_REGISTERED } = require('../../../utils/errorSet');
 const { registerValidation } = require('../../../utils/validations/register');
-const { genToken } = require('../authentication/authentication');
+const { genToken } = require('../auth/auth');
 
 module.exports = async (user) => {
     const passwordHash = md5(user.password);
