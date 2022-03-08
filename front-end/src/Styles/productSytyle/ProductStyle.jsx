@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
-export const StyleDivProduct = styled.p`
+export const StyleDivProduct = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
 `;
 
-export const StyleDivTotalPrice = styled.p`
+export const StyleDivTotalPrice = styled.div`
   background-color: #036b52;
   color: white;
   position: fixed;

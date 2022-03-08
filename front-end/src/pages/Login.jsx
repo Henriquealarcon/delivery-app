@@ -7,7 +7,7 @@ import {
   Inputs,
   ButonsSend,
   ButonsRegister,
-} from '../Styles/login/Loguin.styles';
+} from '../Styles/login/Loguinstyles';
 
 export default function Login() {
   const [login, setLogin] = useState({

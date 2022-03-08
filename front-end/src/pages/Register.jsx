@@ -6,7 +6,7 @@ import {
   LoguinDiv,
   Inputs,
   ButonsSend,
-} from '../Styles/login/Loguin.styles';
+} from '../Styles/login/Loguinstyles';
 
 export default function RegisterUser() {
   const [register, setRegister] = useState({
