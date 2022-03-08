@@ -83,8 +83,7 @@ export default function Checkout() {
                   key={ index }
                   index={ index }
                 />
-              ))
-            }
+              ))}
           </tbody>
         </TableDiv>
         <TotalDiv>
