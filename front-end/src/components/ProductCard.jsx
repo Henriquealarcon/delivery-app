@@ -76,7 +76,7 @@ export default function ProductCard(product) {
             -
           </button>
           <input
-            type="text"
+            type="number"
             pattern="[0-9]*"
             data-testid={ `customer_products__input-card-quantity-${id}` }
             onChange={ (e) => handleInputQuantity(e.target) }

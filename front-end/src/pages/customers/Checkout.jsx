@@ -14,10 +14,10 @@ import postProductsSolds from '../../services/postProductSolds';
 import getSellers from '../../services/getSellers';
 
 export default function Checkout() {
-  const [sellers, setSellers] = useState([]);
-  const [sellerId, setSellerId] = useState(2);
   const [redirect, setRedirect] = useState(false);
   const [idOrder, setIdOrder] = useState('');
+  const [sellers, setSellers] = useState([]);
+  const [sellerId, setSellerId] = useState(2);
   const [adress, setAdress] = useState({
     deliveryAddress: '',
     deliveryNumber: '',
@@ -37,19 +37,12 @@ export default function Checkout() {
   const totalPrice = useSelector(({ productCartReducer }) => (
     productCartReducer.totalPrice));
 
-  const selectSeller = ({ target: { value } }) => {
-    console.log(value);
-    // setSellerId(value);
-  };
-
-  const addressClient = ({ value }) => {
-    setAdress({ ...adress, deliveryAddress: value });
-  };
-
-  const numberClient = ({ value }) => {
-    setAdress({
-      ...adress,
-      deliveryNumber: value });
+  const handleChange = ({ name, value }) => {
+    if (name === 'select-seller') setSellerId(value);
+    if (name === 'customer-address') setAdress({ ...adress, deliveryAddress: value });
+    if (name === 'customer-address-number') {
+      setAdress({ ...adress, deliveryNumber: value });
+    }
   };
 
   const finishSale = async () => {
@@ -64,10 +57,10 @@ export default function Checkout() {
       totalPrice,
       deliveryAddress,
       deliveryNumber,
-      status: 'pendente',
+      status: 'Pendente',
       productsSold,
     };
-    console.log(requestObj);
+
     const order = await postProductsSolds(requestObj);
     setIdOrder(order.id);
     setRedirect(true);
@@ -83,8 +76,8 @@ export default function Checkout() {
             <TableHead />
           </thead>
           <tbody>
-            {
-              products.filter((product) => product.subtotal > 0).map((product, index) => (
+            { products.filter((product) => product.subtotal > 0)
+              .map((product, index) => (
                 <TableBody
                   product={ product }
                   key={ index }
@@ -107,14 +100,14 @@ export default function Checkout() {
           <h2>Detalhes e Endereço para Entrega</h2>
           <select
             data-testid="customer_checkout__select-seller"
-            name="seller"
-            onChange={ selectSeller }
+            name="select-seller"
+            onChange={ (e) => handleChange(e.target) }
           >
             {
-              sellers.map(({ /* id  */name }, index) => (
+              sellers.map(({ id, name }, index) => (
                 <option
                   key={ index }
-                  // value={ id }
+                  value={ id }
                 >
                   {name}
                 </option>))
@@ -122,15 +115,17 @@ export default function Checkout() {
           </select>
           <input
             data-testid="customer_checkout__input-address"
+            name="customer-address"
             type="text"
-            onChange={ (e) => addressClient(e.target) }
+            onChange={ (e) => handleChange(e.target) }
           />
           <input
             data-testid="customer_checkout__input-addressNumber"
-            type="text"
+            name="customer-address-number"
+            type="number"
             pattern="[0-9]*"
-            onChange={ (e) => numberClient(e.target) }
-
+            onChange={ (e) => handleChange(e.target) }
+            value={ adress.deliveryNumber }
           />
           <button
             data-testid="customer_checkout__button-submit-order"
@@ -139,8 +134,7 @@ export default function Checkout() {
           >
             finalizar pedido
           </button>
-          { redirect
-            ? <Redirect to={ `/localhost:3000/customer/orders/${idOrder}` } /> : null }
+          { redirect ? <Redirect to={ `/customer/orders/${idOrder}` } /> : null }
         </AddressDiv>
       </MainChekoutDiv>
     </>
