@@ -1,5 +1,6 @@
-import React, { /* useState, useEffect */ } from 'react';
+import React, { useState /* useEffect */ } from 'react';
 import { useSelector } from 'react-redux';
+// import { Redirect } from 'react-router-dom';
 import NavBar from '../../components/Navbar';
 import TableBody from '../../components/TableBody';
 import {
@@ -15,6 +16,38 @@ export default function Checkout() {
     productCartReducer.subtotalCartList));
   const totalPrice = useSelector(({ productCartReducer }) => (
     productCartReducer.totalPrice));
+  // const [redirect, setRedirect] = useState(false);
+  const [adress, setAdress] = useState({
+    deliveryAddress: '',
+    deliveryNumber: '' });
+
+  const adrresClient = ({ value }) => {
+    setAdress({ ...adress, deliveryAddress: value });
+  };
+
+  const numberClient = ({ value }) => {
+    setAdress({
+      ...adress,
+      deliveryNumber: value });
+  };
+  const finishSale = async () => {
+    const { deliveryAddress, deliveryNumber } = adress;
+
+    const productsSold = products
+      .filter((product) => product.subtotal > 0)
+      .map(({ id, quantity }) => ({ id, quantity }));
+
+    const requestObj = {
+      sellerId: 1,
+      totalPrice,
+      deliveryAddress,
+      deliveryNumber,
+      status: 'pendente',
+      productsSold,
+    };
+
+    console.log(requestObj);
+  };
 
   return (
     <>
@@ -60,17 +93,23 @@ export default function Checkout() {
           <input
             data-testid="customer_checkout__input-address"
             type="text"
+            onChange={ (e) => adrresClient(e.target) }
           />
           <input
             data-testid="customer_checkout__input-addressNumber"
             type="text"
+            onChange={ (e) => numberClient(e.target) }
+
           />
           <button
             data-testid="customer_checkout__button-submit-order"
             type="button"
+            onClick={ () => finishSale() }
           >
             finalizar pedido
           </button>
+          {/* redirect
+            ? <Redirect to={ `/localhost:3000/customer/orders/${id}` } /> : null */}
         </AddressDiv>
       </MainChekoutDiv>
     </>
