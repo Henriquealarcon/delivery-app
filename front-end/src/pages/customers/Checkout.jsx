@@ -1,4 +1,4 @@
-import React, { useState /* useEffect */ } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import NavBar from '../../components/Navbar';
@@ -11,22 +11,38 @@ import {
 import { TableDiv } from '../../Styles/tablestyles/tableSltyles';
 import TableHead from '../../components/TableHead';
 import postProductsSolds from '../../services/postProductSolds';
+import getSellers from '../../services/getSellers';
 
 export default function Checkout() {
+  const [sellers, setSellers] = useState([]);
+  const [sellerId, setSellerId] = useState(2);
+  const [redirect, setRedirect] = useState(false);
+  const [idOrder, setIdOrder] = useState('');
+  const [adress, setAdress] = useState({
+    deliveryAddress: '',
+    deliveryNumber: '',
+  });
+
+  useEffect(() => {
+    const getApiSelers = async () => {
+      const seller = await getSellers();
+      setSellers(seller);
+    };
+    getApiSelers();
+  }, []);
+
   const products = useSelector(({ productCartReducer }) => (
     productCartReducer.subtotalCartList));
+
   const totalPrice = useSelector(({ productCartReducer }) => (
     productCartReducer.totalPrice));
 
-  const [redirect, setRedirect] = useState(false);
+  const selectSeller = ({ target: { value } }) => {
+    console.log(value);
+    // setSellerId(value);
+  };
 
-  const [adress, setAdress] = useState({
-    deliveryAddress: '',
-    deliveryNumber: '' });
-
-  const [idOrder, setIdOrder] = useState('');
-
-  const adrresClient = ({ value }) => {
+  const addressClient = ({ value }) => {
     setAdress({ ...adress, deliveryAddress: value });
   };
 
@@ -35,6 +51,7 @@ export default function Checkout() {
       ...adress,
       deliveryNumber: value });
   };
+
   const finishSale = async () => {
     const { deliveryAddress, deliveryNumber } = adress;
 
@@ -43,14 +60,14 @@ export default function Checkout() {
       .map(({ id: productId, quantity }) => ({ productId, quantity }));
 
     const requestObj = {
-      sellerId: 1,
+      sellerId,
       totalPrice,
       deliveryAddress,
       deliveryNumber,
       status: 'pendente',
       productsSold,
     };
-
+    console.log(requestObj);
     const order = await postProductsSolds(requestObj);
     setIdOrder(order.id);
     setRedirect(true);
@@ -90,21 +107,28 @@ export default function Checkout() {
           <h2>Detalhes e Endereço para Entrega</h2>
           <select
             data-testid="customer_checkout__select-seller"
-            name="saler"
-            id="saler"
+            name="seller"
+            onChange={ selectSeller }
           >
-            <option value="lugar1">1</option>
-            <option value="lugar2">2</option>
-            <option value="lugar3">3</option>
+            {
+              sellers.map(({ /* id  */name }, index) => (
+                <option
+                  key={ index }
+                  // value={ id }
+                >
+                  {name}
+                </option>))
+            }
           </select>
           <input
             data-testid="customer_checkout__input-address"
             type="text"
-            onChange={ (e) => adrresClient(e.target) }
+            onChange={ (e) => addressClient(e.target) }
           />
           <input
             data-testid="customer_checkout__input-addressNumber"
             type="text"
+            pattern="[0-9]*"
             onChange={ (e) => numberClient(e.target) }
 
           />
