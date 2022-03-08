@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const notExist = 404;
+const conflict = 409;
 
 async function apiRegister(register, token) {
   try {
@@ -15,7 +15,7 @@ async function apiRegister(register, token) {
     const response = await fetchAPI.data;
     return response;
   } catch (error) {
-    return notExist;
+    return conflict;
   }
 }
 
