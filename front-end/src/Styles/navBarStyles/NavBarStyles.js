@@ -2,14 +2,14 @@ import styled from 'styled-components';
 
 export const NavbarDiv = styled.p`
   color: white;
-  top: 0;
+  top: 0 !important;
+  position: relative !important;
   width: 100%;
   height: 100%;
-  a {
-  color: white;
-  text-decoration: none;
-}
-  background-color: #ffffff;
+    a {
+      color: white;
+      text-decoration: none;
+    }
   display: flex;
   flex-direction: row;
   justify-content: space-around;

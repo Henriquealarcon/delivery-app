@@ -15,7 +15,6 @@ export default function Products() {
 
   return (
     <>
-      {' '}
       <NavBar />
       <StyleDivProduct>
         <ProductList />

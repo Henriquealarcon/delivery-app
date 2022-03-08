@@ -1,6 +1,6 @@
 import React, { useState /* useEffect */ } from 'react';
 import { useSelector } from 'react-redux';
-// import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import NavBar from '../../components/Navbar';
 import TableBody from '../../components/TableBody';
 import {
@@ -10,16 +10,21 @@ import {
 } from '../../Styles/tablestyles/Checkout';
 import { TableDiv } from '../../Styles/tablestyles/tableSltyles';
 import TableHead from '../../components/TableHead';
+import postProductsSolds from '../../services/postProductSolds';
 
 export default function Checkout() {
   const products = useSelector(({ productCartReducer }) => (
     productCartReducer.subtotalCartList));
   const totalPrice = useSelector(({ productCartReducer }) => (
     productCartReducer.totalPrice));
-  // const [redirect, setRedirect] = useState(false);
+
+  const [redirect, setRedirect] = useState(false);
+
   const [adress, setAdress] = useState({
     deliveryAddress: '',
     deliveryNumber: '' });
+
+  const [idOrder, setIdOrder] = useState('');
 
   const adrresClient = ({ value }) => {
     setAdress({ ...adress, deliveryAddress: value });
@@ -35,7 +40,7 @@ export default function Checkout() {
 
     const productsSold = products
       .filter((product) => product.subtotal > 0)
-      .map(({ id, quantity }) => ({ id, quantity }));
+      .map(({ id: productId, quantity }) => ({ productId, quantity }));
 
     const requestObj = {
       sellerId: 1,
@@ -46,7 +51,9 @@ export default function Checkout() {
       productsSold,
     };
 
-    console.log(requestObj);
+    const order = await postProductsSolds(requestObj);
+    setIdOrder(order.id);
+    setRedirect(true);
   };
 
   return (
@@ -108,8 +115,8 @@ export default function Checkout() {
           >
             finalizar pedido
           </button>
-          {/* redirect
-            ? <Redirect to={ `/localhost:3000/customer/orders/${id}` } /> : null */}
+          { redirect
+            ? <Redirect to={ `/localhost:3000/customer/orders/${idOrder}` } /> : null }
         </AddressDiv>
       </MainChekoutDiv>
     </>
