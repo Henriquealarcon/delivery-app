@@ -2,14 +2,16 @@ const express = require('express');
 
 const root = express.Router({ mergeParams: true });
 
-const newLoginRouter = require('./login/router');
-const newRegisterRouter = require('./users/router');
-const newProductRouter = require('./products/router');
-const newAdminRegisterRouter = require('./admin/router');
+const loginRouter = require('./login/router');
+const usersRouter = require('./users/router');
+const productRouter = require('./products/router');
+const salesRouter = require('./sales/router');
+const adminRouter = require('./admin/router');
 
-root.use('/login', newLoginRouter);
-root.use('/register', newRegisterRouter);
-root.use('/customer/products', newProductRouter);
-root.use('/adminRegister', newAdminRegisterRouter);
+root.use('/login', loginRouter);
+root.use('/register', usersRouter);
+root.use('/customer/products', productRouter);
+root.use('/customer/order', salesRouter);
+root.use('/adminRegister', adminRouter);
 
-module.exports = { root };
+module.exports = root;

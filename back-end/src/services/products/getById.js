@@ -1,4 +1,5 @@
-const { StatusCodes, USER_NOT_EXIST } = require('http-status-codes');
+const { StatusCodes } = require('http-status-codes');
+const { USER_NOT_EXIST } = require('../../../utils/errorSet');
 const Models = require('../../database/models');
 
 module.exports = async (id) => {
@@ -8,7 +9,5 @@ module.exports = async (id) => {
         return USER_NOT_EXIST;
     }
 
-    return {
-        status: StatusCodes.OK, message: products,
-    };
+    return { status: StatusCodes.OK, message: products };
 };

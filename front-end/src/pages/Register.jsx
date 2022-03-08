@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { registerValidation } from '../utils/inputValidations';
 import registerApi from '../services/RegisterLoginServices';
+import {
+  LoguinDiv,
+  Inputs,
+  ButonsSend,
+} from '../Styles/login/Loguinstyles';
 
 export default function RegisterUser() {
   const [register, setRegister] = useState({
@@ -45,45 +50,45 @@ export default function RegisterUser() {
   };
 
   return (
-    <>
+    <LoguinDiv>
       <p
         data-testid="common_register__element-invalid_register"
         hidden={ hiddenOn }
       >
         invalid credential
       </p>
-      <input
+      <Inputs
         name="name"
         onChange={ validatePassword }
         type="name"
         data-testid="common_register__input-name"
         placeholder="Insira um nome"
       />
-      <input
+      <Inputs
         name="email"
         onChange={ validatePassword }
         type="text"
         data-testid="common_register__input-email"
         placeholder="Insira um e-email"
       />
-      <input
+      <Inputs
         name="password"
         onChange={ validatePassword }
         type="password"
         data-testid="common_register__input-password"
         placeholder="Insira uma senha"
       />
-      <button
+      <ButonsSend
         type="submit"
         data-testid="common_register__button-register"
         disabled={ switchDisabledButton() }
         onClick={ () => sendRegister(register) }
       >
         register now
-      </button>
+      </ButonsSend>
       {
         redirectOn ? <Redirect to="/customer/products" /> : null
       }
-    </>
+    </LoguinDiv>
   );
 }

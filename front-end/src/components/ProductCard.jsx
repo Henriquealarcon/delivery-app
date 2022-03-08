@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { changeSubtotalList, createSubtotalList } from '../redux/slice/productCart';
+import {
+  changeSubtotalList,
+  createSubtotalList,
+  updateTotalPrice } from '../redux/slice/productCart';
 import {
   DivCard,
   DivCardFooter,
@@ -25,9 +28,14 @@ export default function ProductCard(product) {
     const multiplication = count * price;
 
     if (subtotalCartList.length < Number('11')) {
-      dispatch(createSubtotalList({ subtotal: multiplication, id }));
+      dispatch(createSubtotalList({
+        subtotal: multiplication, id, name, price, quantity: count,
+      }));
     } else {
-      dispatch(changeSubtotalList({ subtotal: multiplication, id }));
+      dispatch(changeSubtotalList({
+        subtotal: multiplication, id, name, price, quantity: count,
+      }));
+      dispatch(updateTotalPrice());
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [count]);
@@ -52,13 +60,13 @@ export default function ProductCard(product) {
         alt="imagem da bebida"
       />
       <DivCardFooter>
-        <div>
+        <p>
           <p
             data-testid={ `customer_products__element-card-title-${id}` }
           >
             {name}
           </p>
-        </div>
+        </p>
         <DivCardButons>
           <button
             onClick={ removeProduct }
@@ -68,7 +76,7 @@ export default function ProductCard(product) {
             -
           </button>
           <input
-            type="text"
+            type="number"
             pattern="[0-9]*"
             data-testid={ `customer_products__input-card-quantity-${id}` }
             onChange={ (e) => handleInputQuantity(e.target) }

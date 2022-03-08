@@ -9,7 +9,8 @@ export default function ProductList() {
   useEffect(() => {
     const get = async () => {
       const response = await getProducts();
-      setProducts(response.message);
+
+      setProducts(response);
     };
     get();
   }, []);

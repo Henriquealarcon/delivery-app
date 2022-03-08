@@ -33,7 +33,7 @@ module.exports = {
         field: 'delivery_number',
         type: Sequelize.STRING,
       },
-      saleDate: {
+      createdAt: {
         field: 'sale_date',
         allowNull: false,
         type: Sequelize.DATE,
