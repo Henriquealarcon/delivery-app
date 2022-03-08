@@ -20,9 +20,7 @@ module.exports = async (user) => {
     return USER_NOT_EXIST;
   }
 
-  const userWithHash = { ...findUserByEmail, password: passwordHash };
-console.log('logLogin', userWithHash);
-  const token = genToken(userWithHash);
+  const token = genToken(findUserByEmail);
 
   return { status: StatusCodes.OK,
      message: { token, users: { ...findUserByEmail, password: null } } };

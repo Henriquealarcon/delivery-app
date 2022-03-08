@@ -11,13 +11,11 @@ module.exports = async (sales, userId) => {
         return INVALID_ENTRIES(validationError.message);
       }
 
-    const salesCreate = await Models.sales.create({ ...sales, userId });
+    const newSale = await Models.sales.create({ ...sales, userId });
 
-    const { saleId } = salesCreate;
+    const { id: saleId } = newSale;
     
-    productsSold.forEach(({ productId, quantity }) => Models.salesProduct
-        .create({ saleId, productId, quantity }));
+    productsSold.forEach(({ productId, quantity }) => Models.salesProducts.create({ saleId, productId, quantity }));
 
-    return { status: StatusCodes.CREATED,
-        message: salesCreate };
+    return { status: StatusCodes.CREATED, message: newSale };
 };
