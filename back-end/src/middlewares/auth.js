@@ -1,5 +1,5 @@
 const { StatusCodes } = require('http-status-codes');
-const { verifyToken } = require('../services/authentication/authentication');
+const { verifyToken } = require('../services/auth/auth');
 
 module.exports = (req, res, next) => {
   const { authorization } = req.headers;

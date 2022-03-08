@@ -2,7 +2,7 @@ const { StatusCodes } = require('http-status-codes');
 const md5 = require('md5');
 const Models = require('../../database/models');
 const { INVALID_ENTRIES, USER_NOT_EXIST } = require('../../../utils/errorSet');
-const { genToken } = require('../authentication/authentication');
+const { genToken } = require('../auth/auth');
 const { loginValidation } = require('../../../utils/validations/login');
 
 module.exports = async (user) => {

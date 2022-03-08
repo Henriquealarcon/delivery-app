@@ -1,13 +1,13 @@
 const express = require('express');
-
 const rescue = require('express-rescue');
-const authentication = require('../../middlewares/authentication');
-const { productsFound } = require('./getProductById');
-const getAllProducts = require('./getProducts');
+
+const { auth } = require('../../middlewares');
+const list = require('./list');
+const getById = require('./getById');
 
 const router = express.Router({ mergeParams: true });
 
-router.get('/', rescue(authentication), rescue(getAllProducts));
-router.get('/:id', rescue(authentication), rescue(productsFound));
+router.get('/', rescue(auth), rescue(list));
+router.get('/:id', rescue(auth), rescue(getById));
 
 module.exports = router;

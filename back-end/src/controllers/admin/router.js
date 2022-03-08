@@ -1,12 +1,11 @@
 const express = require('express');
-
 const rescue = require('express-rescue');
-const authentication = require('../../middlewares/authentication');
+
+const { auth } = require('../../middlewares');
+const create = require('./create');
 
 const router = express.Router({ mergeParams: true });
 
-const createUser = require('./createUserController');
-
-router.post('/', rescue(authentication), rescue(createUser));
+router.post('/', rescue(auth), rescue(create));
 
 module.exports = router;

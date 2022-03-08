@@ -1,12 +1,9 @@
 const express = require('express');
-
 const path = require('path');
-
 const cors = require('cors');
 
-const { root } = require('../controllers/root');
-
-const error = require('../middlewares/error');
+const root = require('../controllers/root');
+const { errorHandler } = require('../middlewares');
 
 const app = express();
 
@@ -21,6 +18,6 @@ app.get('/images/:name', async (req, res, _next) => {
 
 app.use(root);
 
-app.use(error);
+app.use(errorHandler);
 
 module.exports = app;
