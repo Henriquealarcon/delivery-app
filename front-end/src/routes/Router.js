@@ -12,6 +12,7 @@ import Orders from '../pages/customers/Orders';
 import OrderDetails from '../pages/customers/OrderDetails';
 import Management from '../pages/adm/Management';
 import SellerOrders from '../pages/sellers/SellerOrders';
+import SellerOrderDetails from '../pages/sellers/SellerOrderDetails';
 
 export default function Router() {
   return (
@@ -24,14 +25,15 @@ export default function Router() {
 
       <Route exact path="/register" component={ Register } />
 
-      {/* essa rota precisa ser dinamica com Id do user */}
       <Route exact path="/customer/orders" component={ Orders } />
 
       <Route exact path="/customer/orders/:id" component={ OrderDetails } />
 
       <Route exact path="/customer/products" component={ Products } />
 
-      <Route exact path="/seller/products" component={ SellerOrders } />
+      <Route exact path="/seller/orders" component={ SellerOrders } />
+
+      <Route exact path="/seller/orders/:id" component={ SellerOrderDetails } />
 
       <Route exact path="/admin/manage" component={ Management } />
 

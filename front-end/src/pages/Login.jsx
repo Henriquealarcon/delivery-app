@@ -35,7 +35,7 @@ export default function Login() {
 
   const setRedirectPath = (role) => {
     if (role === 'administrator') return '/admin/manage';
-    if (role === 'seller') return '/seller/products';
+    if (role === 'seller') return '/seller/orders';
     return '/customer/products';
   };
 
@@ -43,9 +43,6 @@ export default function Login() {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user !== undefined) {
       setConnectionOn(user);
-      /*  if (connectionOn) {
-      history.push(setRedirectPath(connectionOn.role));
-      } */
     }
   }, []);
 

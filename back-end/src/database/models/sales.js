@@ -7,12 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     totalPrice: DataTypes.DECIMAL(9, 2),
     deliveryAddress: DataTypes.STRING,
     deliveryNumber: DataTypes.STRING,
-    saleDate: {
-      type: DataTypes.DATEONLY,
-      get: function() {
-         return moment(this.getDataValue('saleDate')).format('DD/MM/YYYY')
-      },
-    },
+    saleDate: DataTypes.DATE,
     status: DataTypes.STRING,
   }, 
   { createdAt: 'saleDate', updatedAt: false, tableName: 'sales', underscored: true });
