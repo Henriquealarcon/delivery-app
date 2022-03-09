@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link /* useHistory */ } from 'react-router-dom';
+import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 import { loginValidation } from '../utils/inputValidations';
 import apiLogin from '../services/ApiLoginServices';
 import {
@@ -18,7 +19,7 @@ export default function Login() {
   const [hiddenOn, setHiddenOn] = useState(true);
   const [connectionOn, setConnectionOn] = useState();
 
-  const history = useHistory();
+  // const history = useHistory();
 
   const validatePassword = ({ target: { name, value } }) => {
     setLogin({ ...login,
@@ -39,10 +40,14 @@ export default function Login() {
   };
 
   useEffect(() => {
-    if (connectionOn) {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user !== undefined) {
+      setConnectionOn(user);
+      /*  if (connectionOn) {
       history.push(setRedirectPath(connectionOn.role));
+      } */
     }
-  }, [connectionOn, history]);
+  }, []);
 
   const sendLogin = async (data) => {
     const notExist = 404;
@@ -103,6 +108,9 @@ export default function Login() {
           Ainda não tenho conta
         </ButonsRegister>
       </Link>
+      {
+        connectionOn && <Redirect to={ setRedirectPath(connectionOn.role) } />
+      }
     </LoguinDiv>
   );
 }
