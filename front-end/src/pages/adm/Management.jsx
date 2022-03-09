@@ -31,9 +31,9 @@ export default function Management() {
   }
 
   const sendRegister = async (data, token) => {
-    const notExist = 404;
+    const conflict = 409;
     const result = await registerApi(data, token);
-    if (result === notExist) {
+    if (result === conflict) {
       setHiddenOn(false);
     } else {
       setRegister({
@@ -49,9 +49,10 @@ export default function Management() {
     <div>
       <Navbar />
       <p
+        data-testid="admin_manage__element-invalid-register"
         hidden={ hiddenOn }
       >
-        Something went wrong
+        Person already registered
       </p>
       <input
         name="name"

@@ -24,7 +24,7 @@ const genToken = (data) => {
 const verifyToken = (token) => {
     const decoded = jwt.verify(token, JWT_SECRET);
     const user = decoded.data;
-
+console.log(user);
     return user;
 };
 

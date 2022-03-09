@@ -1,3 +1,5 @@
+const moment = require("moment");
+
 module.exports = (sequelize, DataTypes) => {
   const sales = sequelize.define('sales', {
     userId: { type: DataTypes.INTEGER, foreignKey: true },
@@ -5,7 +7,12 @@ module.exports = (sequelize, DataTypes) => {
     totalPrice: DataTypes.DECIMAL(9, 2),
     deliveryAddress: DataTypes.STRING,
     deliveryNumber: DataTypes.STRING,
-    saleDate: DataTypes.DATE,
+    saleDate: {
+      type: DataTypes.DATEONLY,
+      get: function() {
+         return moment(this.getDataValue('saleDate')).format('DD/MM/YYYY')
+      },
+    },
     status: DataTypes.STRING,
   }, 
   { createdAt: 'saleDate', updatedAt: false, tableName: 'sales', underscored: true });

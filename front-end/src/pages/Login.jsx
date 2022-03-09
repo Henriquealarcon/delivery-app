@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link /* useHistory */ } from 'react-router-dom';
+import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 import { loginValidation } from '../utils/inputValidations';
 import apiLogin from '../services/ApiLoginServices';
 import {
@@ -16,8 +17,9 @@ export default function Login() {
   });
 
   const [hiddenOn, setHiddenOn] = useState(true);
+  const [connectionOn, setConnectionOn] = useState();
 
-  const history = useHistory();
+  // const history = useHistory();
 
   const validatePassword = ({ target: { name, value } }) => {
     setLogin({ ...login,
@@ -37,6 +39,16 @@ export default function Login() {
     return '/customer/products';
   };
 
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user !== undefined) {
+      setConnectionOn(user);
+      /*  if (connectionOn) {
+      history.push(setRedirectPath(connectionOn.role));
+      } */
+    }
+  }, []);
+
   const sendLogin = async (data) => {
     const notExist = 404;
     const result = await apiLogin(data);
@@ -45,15 +57,14 @@ export default function Login() {
     } else {
       const { token, users } = result;
       const UserData = {
+        id: users.id,
         name: users.name,
         email: users.email,
         role: users.role,
         token,
       };
       localStorage.setItem('user', JSON.stringify(UserData));
-      const path = setRedirectPath(users.role);
-      history.push(path);
-      return UserData;
+      setConnectionOn(users);
     }
   };
 
@@ -97,6 +108,9 @@ export default function Login() {
           Ainda não tenho conta
         </ButonsRegister>
       </Link>
+      {
+        connectionOn && <Redirect to={ setRedirectPath(connectionOn.role) } />
+      }
     </LoguinDiv>
   );
 }
