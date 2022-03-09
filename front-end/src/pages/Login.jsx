@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { loginValidation } from '../utils/inputValidations';
 import apiLogin from '../services/ApiLoginServices';
@@ -16,17 +16,9 @@ export default function Login() {
   });
 
   const [hiddenOn, setHiddenOn] = useState(true);
-  // const [connectionOn, setConnectionOn] = useState(false);
+  const [connectionOn, setConnectionOn] = useState();
 
   const history = useHistory();
-
-  // useEffect(() => {
-  //   const get = async () => {
-  //     const { token } = await JSON.parse(localStorage.getItem('user'));
-  //     if (token) setConnectionOn(true);
-  //   };
-  //   get();
-  // }, []);
 
   const validatePassword = ({ target: { name, value } }) => {
     setLogin({ ...login,
@@ -46,6 +38,12 @@ export default function Login() {
     return '/customer/products';
   };
 
+  useEffect(() => {
+    if (connectionOn) {
+      history.push(setRedirectPath(connectionOn.role));
+    }
+  }, [connectionOn, history]);
+
   const sendLogin = async (data) => {
     const notExist = 404;
     const result = await apiLogin(data);
@@ -61,9 +59,7 @@ export default function Login() {
         token,
       };
       localStorage.setItem('user', JSON.stringify(UserData));
-      const path = setRedirectPath(users.role);
-      history.push(path);
-      return UserData;
+      setConnectionOn(users);
     }
   };
 
@@ -107,7 +103,6 @@ export default function Login() {
           Ainda não tenho conta
         </ButonsRegister>
       </Link>
-      {/* { connectionOn && history.push('/customer/products') } */}
     </LoguinDiv>
   );
 }
