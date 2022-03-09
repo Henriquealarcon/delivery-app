@@ -2,7 +2,7 @@ const { StatusCodes } = require('http-status-codes');
 const md5 = require('md5');
 const Models = require('../../database/models');
 const { INVALID_ENTRIES, USER_NOT_EXIST } = require('../../../utils/errorSet');
-const { genToken } = require('../authentication/authentication');
+const { genToken } = require('../auth/auth');
 const { loginValidation } = require('../../../utils/validations/login');
 
 module.exports = async (user) => {
@@ -20,9 +20,7 @@ module.exports = async (user) => {
     return USER_NOT_EXIST;
   }
 
-  const userWithHash = { ...findUserByEmail, password: passwordHash };
-
-  const token = genToken(userWithHash);
+  const token = genToken(findUserByEmail);
 
   return { status: StatusCodes.OK,
      message: { token, users: { ...findUserByEmail, password: null } } };

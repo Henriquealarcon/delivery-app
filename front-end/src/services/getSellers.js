@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 const notExist = 404;
-async function apiLogin(login) {
+async function getSellers() {
   try {
-    const url = 'http://localhost:3001/login';
+    const url = 'http://localhost:3001/register';
 
-    const fetchAPI = await axios.post(url, login);
+    const fetchAPI = await axios.get(url);
     const response = await fetchAPI.data;
     return response;
   } catch (error) {
@@ -13,4 +13,4 @@ async function apiLogin(login) {
   }
 }
 
-export default apiLogin;
+export default getSellers;

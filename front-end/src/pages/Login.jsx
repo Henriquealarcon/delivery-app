@@ -2,6 +2,12 @@ import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { loginValidation } from '../utils/inputValidations';
 import apiLogin from '../services/ApiLoginServices';
+import {
+  LoguinDiv,
+  Inputs,
+  ButonsSend,
+  ButonsRegister,
+} from '../Styles/login/Loguinstyles';
 
 export default function Login() {
   const [login, setLogin] = useState({
@@ -10,8 +16,17 @@ export default function Login() {
   });
 
   const [hiddenOn, setHiddenOn] = useState(true);
+  // const [connectionOn, setConnectionOn] = useState(false);
 
   const history = useHistory();
+
+  // useEffect(() => {
+  //   const get = async () => {
+  //     const { token } = await JSON.parse(localStorage.getItem('user'));
+  //     if (token) setConnectionOn(true);
+  //   };
+  //   get();
+  // }, []);
 
   const validatePassword = ({ target: { name, value } }) => {
     setLogin({ ...login,
@@ -53,43 +68,46 @@ export default function Login() {
   };
 
   return (
-    <>
+    <LoguinDiv>
       <p
         data-testid="common_login__element-invalid-email"
         hidden={ hiddenOn }
       >
         invalid credential
       </p>
-      <input
-        name="email"
-        onChange={ validatePassword }
-        type="text"
-        data-testid="common_login__input-email"
-        placeholder="Insira seu e-mail"
-      />
-      <input
-        name="password"
-        onChange={ validatePassword }
-        type="password"
-        data-testid="common_login__input-password"
-        placeholder="Insira sua senha"
-      />
-      <button
+      <div>
+        <Inputs
+          name="email"
+          onChange={ validatePassword }
+          type="text"
+          data-testid="common_login__input-email"
+          placeholder="Insira seu e-mail"
+        />
+        <Inputs
+          name="password"
+          onChange={ validatePassword }
+          type="password"
+          data-testid="common_login__input-password"
+          placeholder="Insira sua senha"
+        />
+      </div>
+      <ButonsSend
         disabled={ handleLoginValidation() }
         onClick={ () => sendLogin(login) }
         type="submit"
         data-testid="common_login__button-login"
       >
         login
-      </button>
+      </ButonsSend>
       <Link to="/register">
-        <button
+        <ButonsRegister
           type="submit"
           data-testid="common_login__button-register"
         >
-          register now
-        </button>
+          Ainda não tenho conta
+        </ButonsRegister>
       </Link>
-    </>
+      {/* { connectionOn && history.push('/customer/products') } */}
+    </LoguinDiv>
   );
 }

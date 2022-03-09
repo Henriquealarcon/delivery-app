@@ -1,10 +1,8 @@
 const { StatusCodes } = require('http-status-codes');
 const Models = require('../../database/models');
 
-module.exports = async (user_id) => {
-    const getSales = await Models.sales.findAll({where: { user_id }});
-    console.log('aqui');
-
+module.exports = async (userId) => {
+    const getSales = await Models.sales.findAll({ where: { userId } });
     return { 
       status: StatusCodes.OK, message: getSales,
      };

@@ -1,11 +1,12 @@
 const express = require('express');
-
 const rescue = require('express-rescue');
+
+const create = require('./create');
+const sellersList = require('./sellersList');
 
 const router = express.Router({ mergeParams: true });
 
-const createUser = require('./createUserController');
-
-router.post('/', rescue(createUser));
+router.post('/', rescue(create));
+router.get('/', rescue(sellersList));
 
 module.exports = router;

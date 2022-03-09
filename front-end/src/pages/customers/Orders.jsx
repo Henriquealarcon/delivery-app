@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
+import getOrders from '../../services/ApiOrdersService';
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
@@ -19,23 +20,23 @@ export default function Orders() {
       {
         orders.map((order, index) => (
           <Link
-            to={ `/customer/orders/${id}` }
+            to={ `/customer/orders/${order.id}` }
             key={ index }
           >
             <div
               key={ index }
             >
-              <p data-testid={ `customer_orders__element-order-${id}` }>
+              <p data-testid={ `customer_orders__element-order-${order.id}` }>
                 { order.id }
               </p>
-              <p data-testid={ `customer_orders__element-delivery-status-${id}` }>
+              <p data-testid={ `customer_orders__element-delivery-status-${order.id}` }>
                 { order.status }
               </p>
-              <p data-testid={ `customer_orders__element-order-date-${id}` }>
-                { order.sale_date }
+              <p data-testid={ `customer_orders__element-order-date-${order.id}` }>
+                { order.saleDate }
               </p>
               <p>
-                { order.total_price }
+                { order.totalPrice }
               </p>
             </div>
           </Link>
