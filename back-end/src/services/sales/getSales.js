@@ -5,10 +5,10 @@ module.exports = async (id) => {
     const getSales = await Models.sales.findAll({ where: { userId: id } });
 
     if (getSales.length === 0) {
-    const getSales = await Models.sales.findAll({ where: { sellerId: id } });
+    const getSalesFromSeller = await Models.sales.findAll({ where: { sellerId: id } });
     
     return { 
-      status: StatusCodes.OK, message: getSales,
+      status: StatusCodes.OK, message: getSalesFromSeller,
      };
     }
 
