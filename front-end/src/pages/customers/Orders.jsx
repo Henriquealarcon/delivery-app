@@ -26,7 +26,7 @@ export default function Orders() {
             <div
               key={ index }
             >
-              <p data-testid={ `customer_orders__element-order-${order.id}` }>
+              <p data-testid={ `customer_orders__element-order-id-${order.id}` }>
                 { order.id }
               </p>
               <p data-testid={ `customer_orders__element-delivery-status-${order.id}` }>
@@ -36,7 +36,7 @@ export default function Orders() {
                 { order.saleDate }
               </p>
               <p>
-                { order.totalPrice }
+                { order.totalPrice.replace('.', ',') }
               </p>
             </div>
           </Link>
