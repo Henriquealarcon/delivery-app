@@ -9,7 +9,7 @@ export default function Orders() {
   useEffect(() => {
     const get = async () => {
       const response = await getOrders();
-      setOrders(response.message);
+      setOrders(response);
     };
     get();
   }, []);
