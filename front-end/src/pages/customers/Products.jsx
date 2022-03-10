@@ -3,11 +3,11 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import NavBar from '../../components/Navbar';
 import ProductList from '../../components/ProductList';
-import {
-  StyleDivProduct,
-  StyleDivTotalPrice,
-  // TotalButton,
-} from '../../Styles/productSytyle/ProductStyle';
+// import {
+//   StyleDivProduct,
+//   StyleDivTotalPrice,
+//   TotalButton,
+// } from '../../Styles/productSytyle/ProductStyle';
 
 export default function Products() {
   const totalPrice = useSelector(({ productCartReducer }) => (
