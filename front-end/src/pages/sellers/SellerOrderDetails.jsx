@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
+import socket from '../../utils/socketClient';
 import getSaleById from '../../services/ApiSalesService';
 
 export default function OrderDetails() {
@@ -18,6 +19,16 @@ export default function OrderDetails() {
     get();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    socket.on('newStatus', (newStatus) => {
+      setSale({ ...sale, status: newStatus });
+    });
+  }, [sale]);
+
+  const changeStatus = ({ target: { value: newStatus } }) => {
+    socket.emit('changeStatus', ({ status: newStatus, id: sale.id }));
+  };
 
   const datId = 'seller_order_details__element-order';
   return (
@@ -45,14 +56,18 @@ export default function OrderDetails() {
         <button
           type="button"
           data-testid="seller_order_details__button-preparing-check"
-          disabled={ false }
+          value="Preparando"
+          onClick={ (e) => changeStatus(e) }
+          disabled={ sale.status !== 'Pendente' }
         >
           Preparar pedido
         </button>
         <button
           type="button"
           data-testid="seller_order_details__button-dispatch-check"
-          disabled
+          value="Em Trânsito"
+          onClick={ (e) => changeStatus(e) }
+          disabled={ sale.status !== 'Preparando' }
         >
           Saiu para entrega
         </button>

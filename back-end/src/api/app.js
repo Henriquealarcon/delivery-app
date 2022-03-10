@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 
+const port = process.env.PORT || 3001;
 const app = express();
 const http = require('http').createServer(app);
 
@@ -29,4 +30,5 @@ require('../sockets/saleStatus')(io);
 
 app.use(errorHandler);
 
-module.exports = app;
+http.listen(port);
+console.log(`Api rodando na porta ${port}`);

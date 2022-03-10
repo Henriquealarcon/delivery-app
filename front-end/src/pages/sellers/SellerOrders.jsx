@@ -40,8 +40,7 @@ export default function SellerOrders() {
               </p>
             </div>
             <p data-testid={ `seller_orders__element-card-address-${order.id}` }>
-              order.adressa
-              {console.log(order)}
+              { `${order.deliveryAddress}, ${order.deliveryNumber}` }
             </p>
           </Link>
         ))

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
+import socket from '../../utils/socketClient';
 import getSaleById from '../../services/ApiSalesService';
 
 export default function OrderDetails() {
@@ -21,8 +22,16 @@ export default function OrderDetails() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(names, 'aqui as sales');
-  console.log(sale.status);
+  useEffect(() => {
+    socket.on('newStatus', (newStatus) => {
+      setSale({ ...sale, status: newStatus });
+    });
+  }, [sale]);
+
+  const changeStatus = ({ target: { value: newStatus } }) => {
+    socket.emit('changeStatus', ({ status: newStatus, id: sale.id }));
+  };
+
   const datId = 'customer_order_details__element-order';
   return (
     <div>
@@ -54,7 +63,9 @@ export default function OrderDetails() {
         <button
           type="button"
           data-testid="customer_order_details__button-delivery-check"
-          disabled={ sale.status !== 'entregue' }
+          value="Entregue"
+          onClick={ (e) => changeStatus(e) }
+          disabled={ sale.status !== 'Em Trânsito' }
         >
           Marcar como entregue
         </button>
