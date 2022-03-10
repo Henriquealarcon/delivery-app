@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import getProducts from '../services/apiCalls';
 import ProductCard from './ProductCard';
-import StyledList from '../Styles/cardsStyle/productListStyle';
+// import StyledList from '../Styles/cardsStyle/productListStyle';
 
 export default function ProductList() {
   const [products, setProducts] = useState([]);
@@ -16,7 +16,8 @@ export default function ProductList() {
   }, []);
 
   return (
-    <StyledList>
+    // <StyledList>
+    <div>
       {
         products.map((product, index) => (
           <ProductCard
@@ -26,6 +27,7 @@ export default function ProductList() {
           />
         ))
       }
-    </StyledList>
+    </div>
+    // </StyledList>
   );
 }

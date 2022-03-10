@@ -3,12 +3,12 @@ import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import NavBar from '../../components/Navbar';
 import TableBody from '../../components/TableBody';
-import {
-  MainChekoutDiv,
-  AddressDiv,
-  TotalDiv,
-} from '../../Styles/tablestyles/Checkout';
-import { TableDiv } from '../../Styles/tablestyles/tableSltyles';
+// import {
+//   MainChekoutDiv,
+//   AddressDiv,
+//   TotalDiv,
+// } from '../../Styles/tablestyles/Checkout';
+// import { TableDiv } from '../../Styles/tablestyles/tableSltyles';
 import TableHead from '../../components/TableHead';
 import postProductsSolds from '../../services/postProductSolds';
 import getSellers from '../../services/getSellers';
@@ -69,73 +69,73 @@ export default function Checkout() {
   return (
     <>
       <NavBar />
-      <MainChekoutDiv>
-        <h2>Finalizar pedido</h2>
-        <TableDiv>
-          <thead>
-            <TableHead />
-          </thead>
-          <tbody>
-            { products.filter((product) => product.subtotal > 0)
-              .map((product, index) => (
-                <TableBody
-                  product={ product }
-                  key={ index }
-                  index={ index }
-                />
-              ))}
-          </tbody>
-        </TableDiv>
-        <TotalDiv>
-          Total:
-          {' '}
-          <div
-            data-testid="customer_checkout__element-order-total-price"
-          >
-            {totalPrice.toFixed(2).toString().replace('.', ',')}
-          </div>
-        </TotalDiv>
-        <AddressDiv>
-          <h2>Detalhes e Endereço para Entrega</h2>
-          <select
-            data-testid="customer_checkout__select-seller"
-            name="select-seller"
-            onChange={ (e) => handleChange(e.target) }
-          >
-            {
-              sellers.map(({ id, name }, index) => (
-                <option
-                  key={ index }
-                  value={ id }
-                >
-                  {name}
-                </option>))
-            }
-          </select>
-          <input
-            data-testid="customer_checkout__input-address"
-            name="customer-address"
-            type="text"
-            onChange={ (e) => handleChange(e.target) }
-          />
-          <input
-            data-testid="customer_checkout__input-addressNumber"
-            name="customer-address-number"
-            type="number"
-            pattern="[0-9]*"
-            onChange={ (e) => handleChange(e.target) }
-            value={ adress.deliveryNumber }
-          />
-          <button
-            data-testid="customer_checkout__button-submit-order"
-            type="button"
-            onClick={ () => finishSale() }
-          >
-            finalizar pedido
-          </button>
-          { redirect ? <Redirect to={ `/customer/orders/${idOrder}` } /> : null }
-        </AddressDiv>
-      </MainChekoutDiv>
+      {/* <MainChekoutDiv> */}
+      <h2>Finalizar pedido</h2>
+      {/* <TableDiv> */}
+      <thead>
+        <TableHead />
+      </thead>
+      <tbody>
+        { products.filter((product) => product.subtotal > 0)
+          .map((product, index) => (
+            <TableBody
+              product={ product }
+              key={ index }
+              index={ index }
+            />
+          ))}
+      </tbody>
+      {/* </TableDiv> */}
+      {/* <TotalDiv> */}
+      Total:
+      {' '}
+      <div
+        data-testid="customer_checkout__element-order-total-price"
+      >
+        {totalPrice.toFixed(2).toString().replace('.', ',')}
+      </div>
+      {/* </TotalDiv> */}
+      {/* <AddressDiv> */}
+      <h2>Detalhes e Endereço para Entrega</h2>
+      <select
+        data-testid="customer_checkout__select-seller"
+        name="select-seller"
+        onChange={ (e) => handleChange(e.target) }
+      >
+        {
+          sellers.map(({ id, name }, index) => (
+            <option
+              key={ index }
+              value={ id }
+            >
+              {name}
+            </option>))
+        }
+      </select>
+      <input
+        data-testid="customer_checkout__input-address"
+        name="customer-address"
+        type="text"
+        onChange={ (e) => handleChange(e.target) }
+      />
+      <input
+        data-testid="customer_checkout__input-addressNumber"
+        name="customer-address-number"
+        type="number"
+        pattern="[0-9]*"
+        onChange={ (e) => handleChange(e.target) }
+        value={ adress.deliveryNumber }
+      />
+      <button
+        data-testid="customer_checkout__button-submit-order"
+        type="button"
+        onClick={ () => finishSale() }
+      >
+        finalizar pedido
+      </button>
+      { redirect ? <Redirect to={ `/customer/orders/${idOrder}` } /> : null }
+      {/* </AddressDiv> */}
+      {/* </MainChekoutDiv> */}
     </>
   );
 }
