@@ -22,7 +22,7 @@ export default function OrderDetails() {
   }, []);
 
   console.log(names, 'aqui as sales');
-  console.log(sale);
+  console.log(sale.status);
   const datId = 'customer_order_details__element-order';
   return (
     <div>
@@ -54,7 +54,7 @@ export default function OrderDetails() {
         <button
           type="button"
           data-testid="customer_order_details__button-delivery-check"
-          disabled={ sale.status === 'Pendente' }
+          disabled={ sale.status !== 'entregue' }
         >
           Marcar como entregue
         </button>
@@ -98,18 +98,18 @@ export default function OrderDetails() {
                 data-testid={ `${datId}-table-sub-total-${index}` }
               >
                 {(Number(product.price) * (product.salesProducts.quantity))
-                  .toFixed(2).replace('.', ',') }
+                  .toFixed(2) }
               </td>
             </tr>
           ))
         }
       </tbody>
-      <div>
-        Total:
-        <p data-testid="customer_order_details__element-order-total-price">
-          { sale.totalPrice }
-        </p>
-      </div>
+      <p data-testid="customer_order_details__element-order-total-price">
+        {
+          `Total: ${Number(sale.totalPrice)
+            .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`
+        }
+      </p>
     </div>
   );
 }
