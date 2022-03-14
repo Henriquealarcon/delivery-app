@@ -75,8 +75,6 @@ $ cd delivery-app
 # Vá para a front-end
 $ cd front-end
 
----
-
 # Instale as dependências do back-end
 $ npm install
 
@@ -87,26 +85,28 @@ $ npm start
 
 ```
 
-<p align="center"> Funcionalidades da aplicação. </p>
+<p align="center"> Funcionalidades da aplicação: A aplicação funciona através de rotas. </p>
+
+
 
 ### Administrador
 - [ ] Cadastro de produtos.
-- [x] Atribuir categoria ao usuário.
+- [x] Atribuir categoria ao usuário.(http://localhost:3000/admin/manage)
 - [ ] Deleção de usuário.
 - [x] Atribuir categoria ao usuário.
 ### Cliente
-- [x] Cadastro de usuário.
-- [x] Login.
-- [x] Acesso aos produtos do app ao fazer o login / registar-se.
-- [x] Adicionar ou retira produtos do carrinho de compras.
+- [x] Cadastro de usuário.(http://localhost:3000/register)
+- [x] Login.(http://localhost:3000/login)
+- [x] Acesso aos produtos do app ao fazer o login / registar-se. (http://localhost:3000/customer/products)
+- [x] Adicionar ou retira produtos do carrinho de compras. (http://localhost:3000/customer/checkout)
 - [x] Acesso ao status do pedido em tempo real.
-- [x] Acesso aos detalhes do seu pedido, e adiciona o endereço de entrega.
+- [x] Acesso aos detalhes do seu pedido, e adiciona o endereço de entrega.(http://localhost:3000/customer/orders)
 - [x] Finaliza a compra e emite uma mensagem para o vendedor.
 ### Vendedor
-- [x] Cadastro como usuário default.
-- [x] Login.
-- [x] Acesso aos pedidos no app ao fazer o login / registar-se.
-- [x] Acesso ao detalhamento do pedido por número e status.
+- [x] Cadastro como usuário default.(http://localhost:3000/register)
+- [x] Login.(http://localhost:3000/customer/login)
+- [x] Acesso aos pedidos no app ao fazer o login / registar-se.(http://localhost:3000/seller/orders)
+- [x] Acesso ao detalhamento do pedido por número e status.(http://localhost:3000/seller/orders/numero#id#pedido)
 - [x] Acesso aos detalhes do seu pedido, e adiciona o endereço de entrega.
 - [x] Recebe o pedido em tempo real e da início a entrega.
 
