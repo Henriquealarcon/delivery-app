@@ -106,7 +106,7 @@ $ npm start
 - [x] Cadastro como usuário default.(http://localhost:3000/register)
 - [x] Login.(http://localhost:3000/customer/login)
 - [x] Acesso aos pedidos no app ao fazer o login / registar-se.(http://localhost:3000/seller/orders)
-- [x] Acesso ao detalhamento do pedido por número e status.(http://localhost:3000/seller/orders/numero#id#pedido)
+- [x] Acesso ao detalhamento do pedido por número e status.(http://localhost:3000/seller/orders)(/número do id do pedido)
 - [x] Acesso aos detalhes do seu pedido, e adiciona o endereço de entrega.
 - [x] Recebe o pedido em tempo real e da início a entrega.
 
