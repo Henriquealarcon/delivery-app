@@ -9,7 +9,7 @@ const getSalesById = require('./getSalesById');
 const router = express.Router({ mergeParams: true });
 
 router.post('/', rescue(auth), rescue(create));
-router.get('/sales/:id', rescue(getSalesById));
-router.get('/:id', rescue(getAllSales));
+router.get('/sales/:id', rescue(auth), rescue(getSalesById));
+router.get('/:id', rescue(auth), rescue(getAllSales));
 
 module.exports = router;
