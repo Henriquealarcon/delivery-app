@@ -112,10 +112,22 @@ $ npm start
 
 <br>
 <br>
-<p align="center"> Status. </p>
 
-<h4 align="center"> 
+## Desenvolvido em conjunto com:
+
+Igor Fernandes - https://github.com/srsifer
+<br>
+Gustavo Mourão - https://github.com/Gustavo-Mourao
+<br>
+Johann Muzzlinger - https://github.com/jmlinger
+<br>
+José Luis Demeneghi - https://github.com/Joseluisdemeneghi
+
+
+## Status
+
+<h3> 
 	🚧  Implementando novas funcionalidades  🚧
-</h4>
+</h3>
 
 
