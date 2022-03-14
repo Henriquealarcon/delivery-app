@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const environment = process.env.NODE_ENV || "test";
+const environment = process.env.NODE_ENV || "dev";
 
 const suffix = {
   prod: "",
