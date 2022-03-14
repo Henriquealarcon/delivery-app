@@ -1,28 +1,42 @@
 <h1 align="center">Aplicativo de Delivery de Bebidas</h1>
-<br>
-<br>
-<p align="center"> Projeto em React e NodeJs de uma aplicação de um aplicativo de delivery com funcionalidades de admin, vendedor e consumidor. </p>
-<br>
-<br>
-<p align="center"> Libs utilizadas dentro da aplicação. </p>
+<br><br>
 
-<div align="center">
-<img align="center" src="https://img.shields.io/badge/Node v15.14.0-339933?style=for-the-badge&logo=node&color=darkblue&logoColor=white" />
-<img align="center" src="https://img.shields.io/badge/React.js-339933?style=for-the-badge&logo=react&color=darkblue&logoColor=white" />
-<img align="center" src="https://img.shields.io/badge/Redux-339933?style=for-the-badge&logo=redux&color=darkblue&logoColor=white" />
-<img align="center" src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&color=darkblue&logoColor=white" />
-<img align="center" src="https://img.shields.io/badge/Express.js-339933?style=for-the-badge&logo=express&color=darkblue&logoColor=white" />
-<img align="center" src="https://img.shields.io/badge/StyledComponents-339933?style=for-the-badge&logo=styledcomponents&color=darkblue&logoColor=white" />
-<img align="center" src="https://img.shields.io/badge/Sequelize-339933?style=for-the-badge&logo=sequelize&color=darkblue&logoColor=white" />
-<img align="center" src="https://img.shields.io/badge/MySQL-339933?style=for-the-badge&logo=mysql&color=darkblue&logoColor=white" />
-<img align="center" src="https://img.shields.io/badge/Postman-339933?style=for-the-badge&logo=postman&color=darkblue&logoColor=white" />
-<img align="center" src="https://img.shields.io/badge/Socket.io-339933?style=for-the-badge&logo=socket.io&color=darkblue&logoColor=white" />
-<img align="center" src="https://img.shields.io/badge/Eslint-339933?style=for-the-badge&logo=eslint&color=darkblue&logoColor=white" />
-<img align="center" src="https://img.shields.io/badge/JWT-339933?style=for-the-badge&logo=jsonwebtokens&color=darkblue&logoColor=white" />
-<img align="center" src="https://img.shields.io/badge/JOI-339933?style=for-the-badge&logo=joi&color=darkblue&logoColor=white" />
+# Descrição
+
+Projeto em React e NodeJs de uma aplicação de um aplicativo de delivery com funcionalidades de admin, vendedor e consumidor
+<br><br>
+
+# Ferramentas de desenvolvimento
+
+<div>
+<img src="https://img.shields.io/badge/Node v15.14.0-339933?style=for-the-badge&logo=node&color=darkblue&logoColor=white" /> https://docs.npmjs.com/
+  <br>
+<img src="https://img.shields.io/badge/React.js-339933?style=for-the-badge&logo=react&color=darkblue&logoColor=white" /> https://pt-br.reactjs.org/docs/getting-started.html
+  <br>
+<img src="https://img.shields.io/badge/Redux-339933?style=for-the-badge&logo=redux&color=darkblue&logoColor=white" /> https://redux.js.org/
+  <br>
+<img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&color=darkblue&logoColor=white" /> https://nodejs.org/pt-br/docs/
+  <br>
+<img src="https://img.shields.io/badge/Express.js-339933?style=for-the-badge&logo=express&color=darkblue&logoColor=white" /> https://expressjs.com/pt-br/
+  <br>
+<img src="https://img.shields.io/badge/StyledComponents-339933?style=for-the-badge&logo=styledcomponents&color=darkblue&logoColor=white" /> https://styled-components.com/docs
+  <br>
+<img src="https://img.shields.io/badge/Sequelize-339933?style=for-the-badge&logo=sequelize&color=darkblue&logoColor=white" /> https://sequelize.org/
+  <br>
+<img src="https://img.shields.io/badge/MySQL-339933?style=for-the-badge&logo=mysql&color=darkblue&logoColor=white" /> https://dev.mysql.com/doc/
+  <br>
+<img src="https://img.shields.io/badge/Postman-339933?style=for-the-badge&logo=postman&color=darkblue&logoColor=white" /> https://learning.postman.com/docs/publishing-your-api/documenting-your-api/
+  <br>
+<img src="https://img.shields.io/badge/Socket.io-339933?style=for-the-badge&logo=socket.io&color=darkblue&logoColor=white" /> https://socket.io/docs/v4/
+  <br>
+<img src="https://img.shields.io/badge/Eslint-339933?style=for-the-badge&logo=eslint&color=darkblue&logoColor=white" /> https://eslint.org/docs/user-guide/configuring/
+  <br>
+<img src="https://img.shields.io/badge/JWT-339933?style=for-the-badge&logo=jsonwebtokens&color=darkblue&logoColor=white" /> https://jwt.io/introduction
+  <br>
+<img src="https://img.shields.io/badge/JOI-339933?style=for-the-badge&logo=joi&color=darkblue&logoColor=white" /> https://joi.dev/api/?v=17.6.0
+<br>
 </div>
-<br>
-<br>
+<br><br>
 
 # Pré-requisitos
 
@@ -85,9 +99,11 @@ $ npm start
 
 ```
 
-<p align="center"> Funcionalidades da aplicação: A aplicação funciona através de rotas. </p>
+## Funcionalidades da aplicação
 
-
+A Aplicação funciona através de rotas e cada rota só pode ser acessada caso exista a autenticação do usuário.
+<br>
+As rotas são condiciadas também de acordo com a função do usuário no aplicação.
 
 ### Administrador
 - [ ] Cadastro de produtos.
@@ -110,8 +126,7 @@ $ npm start
 - [x] Acesso aos detalhes do seu pedido, e adiciona o endereço de entrega.
 - [x] Recebe o pedido em tempo real e da início a entrega.
 
-<br>
-<br>
+<br><br>
 
 ## Desenvolvido em conjunto com:
 
