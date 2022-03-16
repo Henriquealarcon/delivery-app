@@ -19,7 +19,9 @@ Projeto em React e NodeJs de uma aplicação de um aplicativo de delivery com fu
   <br>
 <img src="https://img.shields.io/badge/Express.js-339933?style=for-the-badge&logo=express&color=darkblue&logoColor=white" /> https://expressjs.com/pt-br/
   <br>
-<img src="https://img.shields.io/badge/StyledComponents-339933?style=for-the-badge&logo=styledcomponents&color=darkblue&logoColor=white" /> https://styled-components.com/docs
+<a href="https://styled-components.com/docs">
+  <img src="https://img.shields.io/badge/StyledComponents-339933?style=for-the-badge&logo=styledcomponents&color=darkblue&logoColor=white" />
+</a>
   <br>
 <img src="https://img.shields.io/badge/Sequelize-339933?style=for-the-badge&logo=sequelize&color=darkblue&logoColor=white" /> https://sequelize.org/
   <br>
