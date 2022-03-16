@@ -103,6 +103,8 @@ $ npm start
 
 ## Funcionalidades da aplicação
 
+## V 1.0
+
 A Aplicação funciona através de rotas e cada rota só pode ser acessada caso exista a autenticação do usuário.
 <br>
 As rotas são condiciadas também de acordo com a função do usuário no aplicação.
